@@ -1,0 +1,35 @@
+<div class="tile-wrapper">
+
+    <div class="tile-header" *ngIf="title">
+        <div class="tile-title">
+            <h6 class="title-headline">{{title}}</h6>
+        </div>
+        <div class="tile-actions">
+
+            <ng-content select="[tile-action]"></ng-content>
+
+        </div>
+    </div>
+
+    <div class="tile-body">
+
+        <!-- <ng-content select="[tile-content]"></ng-content> -->
+
+        <div class="tile-body-content" #ref>
+            <ng-content select="[tile-content]"></ng-content>
+        </div>
+        <div class="tile-default-content" *ngIf="ref.children.length == 0">
+            <span class="default-text">
+                No content available
+            </span>
+        </div>
+
+    </div>
+    
+    <div class="tile-footer" #tileFooter [hidden]="!showFooter">
+
+        <ng-content select="[tile-footer]"></ng-content>
+    
+    </div>
+
+</div>

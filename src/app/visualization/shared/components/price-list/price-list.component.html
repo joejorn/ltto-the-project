@@ -1,0 +1,28 @@
+<md-list class="feature-list">
+    <md-list-item
+        class="list-item"
+        [class.selectable]="selectable" 
+        [class.selected]="_index == selectedIndex"
+        *ngFor="let item of items 
+                | filterByFieldValue:valuePath:'*' 
+                | sortByField:sortProperty:sortDirection 
+                | limitSize: maxItem; 
+                let _index = index;"
+        [attr.data-origin-index]="item.$index"
+        (click)="selectItem(_index, item)">
+
+        <div md-line class="item-body">
+            <div *ngIf="indexed" class="item-content item-index">
+                <span class="item-subtitle">{{_index + 1}}.</span>
+            </div>
+            <div class="item-content extra-width">
+                <span class="item-title">{{ item.name ? item.name : "untitled"}}</span>
+            </div>
+            <div class="flex-spacer"></div>
+            <div class="item-content content-right">
+                <span class="item-subtitle">{{ item[valuePath]?.toLocaleString("en") }}</span>
+            </div>
+        </div>
+
+    </md-list-item>
+</md-list>

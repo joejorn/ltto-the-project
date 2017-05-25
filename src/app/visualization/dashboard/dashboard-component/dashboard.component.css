@@ -1,0 +1,46 @@
+:host {
+    display: block;
+    height: 100%;
+}
+
+.invincible {
+    visibility: hidden;
+}
+
+.component-page-content {
+    display: block;
+    height: inherit;
+    background-color: #fafafa;
+}
+
+.section-container {
+    width: 90%;
+    padding: 1em 0;
+    margin: 0 auto;
+}
+.section-container > section:first-child {
+    padding: 24px 0 12px 0;
+}
+.section-container > section:not(:first-child) {
+    padding: 12px 0;
+}
+.section-container > section:last-child {
+    padding: 12px 0 24px 0;
+}
+
+/* TILES */
+.grid-tile {
+    background-color: white;
+}
+.tile-action.icon-btn {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+}
+.tile-action.icon {
+    font-size: 20px;
+}
+.tile-action.btn {
+    text-transform: uppercase;
+    text-decoration: underline;
+}

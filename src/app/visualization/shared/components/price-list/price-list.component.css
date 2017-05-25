@@ -1,0 +1,38 @@
+:host {
+    display: block;
+}
+.feature-list {
+    background-color: white;
+    padding: 0;
+}
+.feature-list .list-item {
+    padding: 0px 10px;
+}
+.feature-list .list-item.selectable {
+    cursor: pointer;
+}
+.feature-list .list-item.selected {
+    background-color: rgba(0,0,0,.08);
+}
+.feature-list .list-item:not(:first-child) {
+    border-top: rgba(0,0,0,.12) 1px solid;
+}
+.item-body[md-line] {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.item-index {
+    margin-right: 1em;
+}
+.item-title {
+    color: initial;
+}
+.item-subtitle, .item-description {
+    color: rgba(0,0,0,.62);
+}
+.flex-spacer {
+    flex: 1;
+    min-width: 12px;
+}

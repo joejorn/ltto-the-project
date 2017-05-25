@@ -1,0 +1,44 @@
+:host {
+    display: block;
+}
+.component-wrapper {
+    /*min-width: 350px;*/
+    max-width: 580px;
+    padding: 10px 20px;
+    margin: auto;
+}
+.component-header {
+    margin-bottom: 2em;
+}
+.component-title {
+    text-transform: uppercase;
+}
+.component-subtitle {
+    font-size: 20px;
+    margin-bottom: 4em;
+}
+.component-section {
+    margin-bottom: 3em;
+}
+.section-content {
+    padding-left: 1.2em;
+}
+.section-title {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.plain-value-list {
+    padding: 0; 
+    list-style-type:none;
+}
+.list-item {
+    margin-top: 1em;
+    margin-bottom: 3em;
+}
+.default-text-container {
+    padding: 10px 8px;
+}
+.default-text {
+    font-weight: 500;
+    color: rgba(0,0,0,.64);
+}

@@ -1,0 +1,168 @@
+<md-progress-bar mode="indeterminate" color="primary" [class.hidden]="!loading"></md-progress-bar>
+
+<div class="component-page-content">
+
+    <div class="section-container" [class.invincible]="loading">
+
+        <!-- Overview -->
+        <section>
+
+            <md-grid-list cols="9" gutterSize="18px" rowHeight="100px">
+
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="2" >
+                    <div class="tile-wrapper">
+                        <div class="tile-body">
+                            
+                            <ltto-metric-chart 
+                                [title]="'Documents'" 
+                                [amount]="documents ? documents.length : 0"></ltto-metric-chart>
+
+                        </div>
+                    </div>
+                </md-grid-tile>
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="2" >
+                    <div class="tile-wrapper">
+                        
+                        <ltto-metric-chart 
+                                [title]="'Sheets'" 
+                                [amount]="counters.sheets"></ltto-metric-chart>
+
+                    </div>
+                </md-grid-tile>
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="2" >
+                    <div class="tile-wrapper">
+                        <div class="tile-body">
+
+                            <ltto-metric-chart 
+                                [title]="'Entries'" 
+                                [amount]="counters.entries"></ltto-metric-chart>
+
+                        </div>
+                    </div>
+                </md-grid-tile>
+
+                <!-- Overall SUM -->
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="3" >
+                    <div class="tile-wrapper">
+                        <div class="tile-body">
+
+                            <ltto-metric-chart 
+                                [title]="'Total'" 
+                                [amount]="lastSum"
+                                [enableNegative]="true"
+                                [displayCurrency]="true"></ltto-metric-chart>
+
+                        </div>
+                    </div>
+                </md-grid-tile>
+
+                
+
+            </md-grid-list>
+
+        </section>
+
+
+        <!-- Charts -->
+        <section>
+
+            <md-grid-list cols="5" gutterSize="18px" rowHeight="280px">
+
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="2" >
+
+                    <ltto-dashboard-tile title="Price Categories">
+                        
+                        <ltto-pie-chart tile-content 
+                            *ngIf="documents && documents.length > 0"
+                            [values]="categorySum | valueOfField:'value':0" 
+                            [labels]="categorySum | valueOfField:'name'"></ltto-pie-chart>
+
+                    </ltto-dashboard-tile>
+
+                </md-grid-tile>
+
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="3" >
+                    
+                    <ltto-dashboard-tile title="Prices">
+                        
+                        <ltto-bar-chart tile-content 
+                            *ngIf="documents && documents.length > 0"
+                            [values]="priceSum | valueOfField:'value':0" 
+                            [labels]="priceSum | valueOfField:'name'"></ltto-bar-chart>
+
+                    </ltto-dashboard-tile>
+
+                </md-grid-tile>
+
+            </md-grid-list>
+
+        </section>
+
+        <!-- Top List -->
+        <section>
+
+            <md-grid-list cols="5" gutterSize="18px" 
+                    [rowHeight]=" (uniqueEntries.length >= maxListSize || documents?.length >= maxListSize) ? '380px':'342px'">
+
+                <!-- Top Entries -->
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="2">
+
+                    <ltto-dashboard-tile [title]="activeTopPrice ? 'Top Entries - ' + activeTopPrice?.name : 'Top Entries' ">
+                        
+                        <div tile-action>
+                            <button class="tile-action icon-btn" md-icon-button [mdMenuTriggerFor]="menu">
+                                <md-icon class="tile-action icon">filter_list</md-icon>
+                            </button>
+                            <md-menu #menu="mdMenu">
+                                <button md-menu-item *ngFor="let price of priceList" 
+                                    (click)="setActivePriceProperty(price)">
+                                    <span>{{ price.name }}</span>
+                                </button>
+                            </md-menu>
+                        </div>
+                        
+                        <ltto-price-list tile-content 
+                            *ngIf="uniqueEntries.length > 0"
+                            [items]="uniqueEntries" 
+                            [valuePath]="activeTopPrice?.property" 
+                            [maxItem]="maxListSize"
+                            [sortProperty]="activeTopPrice?.property"
+                            sortDirection="descending" indexed="true"></ltto-price-list>
+
+                        <div *ngIf="uniqueEntries.length > maxListSize" tile-footer>
+                            <button md-button class="tile-action btn">See the complete list</button>
+                        </div>
+
+                    </ltto-dashboard-tile>
+
+                </md-grid-tile>
+
+                <!-- TOP Documents -->
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="3">
+
+                    <ltto-dashboard-tile title="Top Documents">
+
+                        <ltto-price-list tile-content 
+                            *ngIf="documents?.length > 0"
+                            [items]="documents" 
+                            [maxItem]="maxListSize"
+                            sortProperty="value"
+                            sortDirection="descending" indexed="true"></ltto-price-list>
+                            
+                        <div tile-footer *ngIf="documents.length > maxListSize">
+                            <button md-button class="tile-action btn">See the complete list</button>
+                        </div>
+
+                    </ltto-dashboard-tile>
+
+                </md-grid-tile>
+
+            </md-grid-list>
+
+        </section>
+
+        
+
+    </div>
+
+</div>

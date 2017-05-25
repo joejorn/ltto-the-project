@@ -1,0 +1,42 @@
+<div class="component-wrapper">
+    <md-sidenav-container class="sidenav-container" *ngIf="documents && documents.length > 0">
+        <!--<md-sidenav #sidenav class="component-sidenav" mode="side" opened="true">-->
+        <md-sidenav #sidenav class="component-sidenav" mode="side">
+            <ltto-price-list #navmenu
+                [items]="documents"
+                [selectedIndex]="0"
+                selectable="true" 
+                valuePath="" 
+                [indexed]="false" (selectedItem)="onSelectedChange($event)"></ltto-price-list>
+        </md-sidenav>
+
+        <div class="component-sidenav-content">
+            
+            <div class="sidenav-dynamic-content">
+                <div class="sidenav-toggler-wrapper">
+                    <!--<button md-button class="sidenav-toggler" (click)="sidenav.toggle()">
+                        <md-icon class="mirrored">{{ (sidenav.opened) ? "keyboard_tab" : "menu"}}</md-icon>
+                        <span class="btn-label">Menu</span>
+                    </button>-->
+                    <!-- FAB -->
+                    <button md-fab color="accent" class="btn-float-wrapper float-right float-bottom" (click)="sidenav.toggle()">
+                        <md-icon>menu</md-icon>
+                    </button>
+                </div>
+                <div class="sidenav-content-wrapper">
+                    
+                    <ltto-document-visualization [document]="selected" [priceList]="priceList"></ltto-document-visualization>
+
+                </div>
+            </div>
+
+        </div>
+
+    </md-sidenav-container>
+
+    <!-- Default Text -->
+    <div class="default-content" *ngIf="!documents || documents.length < 1">
+        <span class="default-text">No content available</span>
+    </div>
+
+</div>

@@ -1,0 +1,81 @@
+<div class="item-header highlight-bg" *ngIf="title" [class.clickable]="items" (click)="toggleSubItems()">
+    <div class="line-wrapper">
+        <div class="line-icon" *ngIf="items">
+            <i class="material-icons" [class.toggled]="!expanded">arrow_drop_down</i>
+        </div>
+        <div class="line-content" [class.indent-content]="!items">
+            <span class="line-title">{{title}}</span>
+            <span class="line-value" *ngIf="enableSum">{{ valueSum.toLocaleString("en") }}</span>
+        </div>
+    </div>
+</div>
+
+<div [class.indent-content]="title">
+    
+    <div class="content-panel">
+        
+        <!-- Content Value List -->
+        
+        <ul class="plain-value-list">
+            
+            <li class="item-row" *ngFor="let valueItem of (values | sortByField:'name')">
+                <div class="line-wrapper">
+                    <div class="line-content">
+                        <span class="content-title">{{ valueItem.name }}</span>
+                        <span class="content-value">{{ valueItem.value.toLocaleString("en") }}</span>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Optional SUM -->
+            <li class="item-row after-end-row" *ngIf="enableSum && !title">
+                <div class="line-wrapper">
+                    <div class="line-content">
+                        <span class="content-title">TOTAL</span>
+                        <span class="content-value">{{ valueSum.toLocaleString("en") }}</span>
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+        
+    </div>
+    
+    <div #hiddenContent class="accordion-panel" *ngIf="items?.length > 0">
+        
+        <!-- Accordion Value List -->
+        
+        <ul class="plain-value-list">
+
+            <li class="sub-item" *ngFor="let subItem of ( items | sortByField:'name')">
+
+                <div class="sub-item-header" *ngIf="subItem?.name">
+                    <div class="line-wrapper">
+                        <div class="line-content">
+                            <span class="line-title">{{ subItem.name }}</span>
+                            <span class="line-value" *ngIf="enableSum">{{ subItem.valueSum.toLocaleString("en") }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-item-body" *ngIf="subItem.values">
+                
+                    <ul class="plain-value-list">
+                        <li *ngFor="let valueItem of subItem.values;"> 
+                            <div class="line-wrapper">
+                                <div class="line-content">
+                                    <span class="content-title">{{ valueItem.name }}</span>
+                                    <span class="content-value">{{ valueItem.value.toLocaleString("en") }}</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                
+                </div>
+            </li>
+            
+        </ul>
+    
+    </div>
+    
+</div>

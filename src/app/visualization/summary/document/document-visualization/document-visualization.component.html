@@ -1,0 +1,69 @@
+<div class="component-wrapper">
+			
+    <div class="component-header">
+        <h3 class="component-title">{{ document?.name ? document.name : "Untitled" }}</h3>
+        <p class="component-subtitle" *ngIf="document?.description">{{ document?.description }}</p>
+    </div>
+    
+    <div class="component-body">
+        <div class="component-section-container">
+            
+            <!-- Summary -->
+            <section class="component-section">
+                <div class="section-header">
+                    <h6 class="section-title">summary</h6>
+                </div>
+                <div class="section-content">
+                    
+                    <!-- Value List including Total Amount -->
+                    <ltto-price-tree 
+                        [values]="document?._sum" 
+                        [enableSum]="true"></ltto-price-tree>
+                    
+                </div>
+            </section>
+            
+            <section class="component-section">
+                <div class="section-header">
+                    <h6 class="section-title">sheet groups &amp; sheets </h6>
+                </div>
+                <div class="section-content">
+                    
+                    <ul class="plain-value-list">
+
+                        <!-- Expandable -->
+                        <li class="list-item" *ngFor="let group of (document?._sheetGroups | sortByField:'name');">
+
+                            <!-- Value List of a sheet group -->
+                            <ltto-price-tree
+                                [title]="group.name"
+                                [items]="group._items"
+                                [enableSum]="true"></ltto-price-tree>
+                            
+                        </li>
+                        
+                        <!-- Unexpandable -->
+                        <li class="list-item" *ngFor="let sheet of (document?._sheets | filterByFieldValue:'groupId':'*':'exclude' | sortByField:'name')">
+
+                            <!-- Value List of a sheet -->
+                            <ltto-price-tree 
+                                [title]="sheet.name"
+                                [values]="sheet._sum" 
+                                [enableSum]="true"></ltto-price-tree>
+
+                        </li>
+                        
+                    </ul>
+
+                    <div class="default-text-container" *ngIf="document?._sheets.length < 1 && document?._sheetGroups.length < 1">
+                        <p class="default-text">No Content available.</p>
+                    </div>
+
+                </div>
+            </section>
+            
+        </div>
+    </div>
+    
+        
+</div>

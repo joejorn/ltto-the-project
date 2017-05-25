@@ -1,0 +1,52 @@
+:host {
+    display: block;
+    height: 100%;
+}
+.component-wrapper {
+    height: inherit;
+}
+.sidenav-container {
+    height: 100%;
+}
+.component-sidenav {
+    border-right: lightgray 1px solid;
+    width: 240px;
+}
+.component-sidenav-content {
+    background-color: #FFF;
+    height: inherit;
+    overflow: auto;
+}
+.sidenav-toggler-wrapper {
+    padding: 1em;
+}
+.btn-label {
+    text-transform: uppercase;
+}
+.mirrored {
+    transform: rotate(180deg); 
+}
+.sidenav-content-wrapper {
+    overflow: auto;
+    margin-bottom: 3em;
+}
+.default-content {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.default-content .default-text {
+    font-weight: 500;
+    color: rgba(0,0,0,.64);
+}
+
+.btn-float-wrapper {
+    position: absolute;
+}
+.float-right { 
+    right: 28px;
+}
+.float-bottom {
+    bottom: 28px;
+}
