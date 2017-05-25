@@ -1,3 +1,40 @@
-<h1>
-  {{title}}
-</h1>
+<header>
+
+  <md-toolbar color="primary">
+    <span class="main-logo">{{ title }}</span>
+    <span class="flex-spacer"></span>
+    <nav class="main-nav-wrapper">
+      <md-nav-list class="main-nav-list">
+        <md-list-item [class.active]="rla.isActive" *ngFor="let link of links">
+          <a  [routerLink]="link.routerlink" 
+              routerLinkActive #rla="routerLinkActive" >{{link.label}}</a>
+        </md-list-item>
+
+        <!-- User Menu -->
+        <div class="btn-container" *ngIf="user">
+          <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>account_circle</md-icon>
+          </button>
+          <md-menu #menu="mdMenu" xPosition="after">
+            <div md-menu-item disabled="true">
+              <span class="menu-title">{{user.firstName}} {{user.lastName}}</span>
+            </div>
+            <button md-menu-item (click)="onLogout()">
+              <md-icon>lock_open</md-icon>
+              <span>Sign out</span>
+            </button>
+          </md-menu>
+        </div>
+ 
+      </md-nav-list>
+    </nav>
+    
+
+  </md-toolbar>
+
+</header>
+
+<!-- ROUTING CONTENT -->
+<main>
+  <router-outlet></router-outlet>
+</main>

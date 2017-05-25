@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+main {
+    /*padding: 0 16px;*/
+}
+.main-logo {
+    /*min-width: 204px;*/
+    font-family: 'Righteous', cursive;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+.toolbar-icon {
+    padding: 0 14px;
+}
+.flex-spacer {
+    flex: 1;
+}
+
+@media (max-width: 960px) and (orientation: landscape) {
+    main {
+        height: calc(100% - 48px) !important;
+    }
+    .main-nav-wrapper {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        height: calc(100% - 56px);
+    }
+    .main-nav-wrapper {
+        display: none;
+    }
+}
+
+@media (min-width: 601px) {
+    main {
+        height: calc(100% - 64px);
+    }
+}
+
+/*nav > a {
+    padding: 0 14px;
+}*/
+
+.main-nav-wrapper {
+    height: 100%
+}
+
+.main-nav-list {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    height: inherit;
+    padding-top: 0;    
+}
+
+.main-nav-list > md-list-item {
+    color: inherit;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav-list > md-list-item.active {
+    background-color: rgba(0,0,0,.15);
+}
+
+.menu-title {
+    font-style: italic;
+    padding-right: 18px;
+}
