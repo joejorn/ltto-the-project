@@ -1,0 +1,21 @@
+<div class="form-container mdl-shadow--2dp">
+
+    <h4 class="heading-text">Sign in</h4>
+
+    <span class="error" *ngIf="error">{{ error }}</span>
+
+    <form class="form-wrapper" #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+
+        <md-input-container class="form-field">
+            <input mdInput type="email" placeholder="Email address.." (ngModel)="email" name="email">
+        </md-input-container>
+        <md-input-container class="form-field">
+            <input mdInput type="password" placeholder="Password" (ngModel)="password" name="password">
+        </md-input-container>
+        <div class="form-action-container">
+            <md-checkbox color="primary" (ngModel)="checked" name="checked">Remember me</md-checkbox>
+            <button md-raised-button type="submit" color="primary">Next</button>
+        </div>
+
+    </form>
+</div>
