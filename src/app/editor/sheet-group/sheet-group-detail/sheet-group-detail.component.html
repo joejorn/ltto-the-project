@@ -1,0 +1,108 @@
+<div class="preload-container" [class.hidden]="!loading">
+    <md-spinner class="preloader"></md-spinner>
+</div>
+
+<!-- Scrollable Content-->
+<div class="component-wrapper" [class.hidden]="loading">
+
+    <header class="component-page-header">
+
+        <!-- Toolbar -->
+        <md-toolbar class="header-panel panel-compact" color="primary">
+
+            <!-- First Row -->
+            <div *ngIf="!hiddenNav" class="nav-block-link">
+                <a [routerLink]="['../..']">{{ document?.name }}</a>
+            </div>
+
+            <!-- Second Row -->
+            <md-toolbar-row class="panel-line">
+
+                <h5 class="header-title title-medium">{{ ( _sheetGroup | async )?.name }}</h5>
+                <div class="flex-spacer"></div>
+
+                <!-- Buttons -->
+                <div class="header-action-container">
+                    <button md-icon-button (click)="editSheetGroup()">
+                        <md-icon>edit</md-icon>
+                    </button>
+                    <button md-icon-button (click)="removeSheetGroup()">
+                        <md-icon>delete</md-icon>
+                    </button>
+                </div>
+
+            </md-toolbar-row>
+
+        </md-toolbar>
+
+        <!-- Sheets -->
+        <div class="tab-group-container" *ngIf="( _sheetList | async )?.length > 0">
+
+            <!-- Tabs -->
+            <md-tab-group class="tab-group-wrapper" [selectedIndex]="0" (selectChange)="onTabChange($event)">
+                <md-tab *ngFor="let group of (_sheetList | async )" label="{{group.name}}"></md-tab>
+            </md-tab-group>
+
+            <!-- Buttons -->
+            <div class="mat-tab-nav-bar tab-actions">
+                <button md-icon-button [mdMenuTriggerFor]="menu">
+                    <md-icon>more_horiz</md-icon>
+                </button>
+                <md-menu #menu="mdMenu">
+                    <button md-menu-item (click)="editActiveSheet()">
+                        <md-icon>edit</md-icon>
+                        <span>Edit</span>
+                    </button>
+                    <button md-menu-item (click)="removeActiveSheet()">
+                        <md-icon>delete</md-icon>
+                        <span>Remove</span>
+                    </button>
+                </md-menu>
+            </div>
+        </div>
+
+        <!-- Initial button for sheet -->
+        <div class="mat-tab-nav-bar tab-actions flex-spacer" *ngIf="( _sheetList | async )?.length < 1">
+            <button md-button class="flex-spacer" [disableRipple]="true" (click)="addNewSheet()">
+                <md-icon>add</md-icon>
+                <span>Add new sheet</span>
+            </button>
+        </div>
+
+    </header>
+
+    <div class="component-page-content">
+
+        <div class="section-container">
+
+            <!-- Entry List -->
+            <ltto-entry-table
+                *ngIf="activeSheet"
+                [sheetId]="activeSheet?.uid" 
+                [documentId]="activeSheet?.documentId"></ltto-entry-table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FAB -->
+<div class="btn-float-wrapper btn-float-bottom btn-float-right">
+    <button md-fab color="accent" class="" [mdMenuTriggerFor]="fabMenu">
+        <md-icon>add</md-icon>
+    </button>
+    
+    <!-- Use "Speed Dial" if it becomes available -->
+
+    <md-menu #fabMenu="mdMenu">
+        <button md-menu-item (click)="addNewSheet()">
+            <md-icon>note_add</md-icon>
+            <span>New Sheet</span>
+        </button>
+        <button md-menu-item [disabled]="!activeSheet" (click)="addNewEntry()">
+            <md-icon>playlist_add</md-icon>
+            <span>New Entry</span>
+        </button>
+    </md-menu>
+</div>

@@ -1,0 +1,121 @@
+<div class="preload-container" [class.hidden]="!loading">
+    <md-spinner class="preloader" color="primary"></md-spinner>
+</div>
+
+<div class="component-wrapper" [class.hidden]="loading">
+
+    <div class="component-page-header" >
+        <md-toolbar color="primary" class="header-panel panel-large">
+            <!-- first row -->
+            <!--<span class="header-title title-large">{{(document | async)?.name}}</span>-->
+            <span class="header-title title-large">{{ _document.value?.name }}</span>
+            <span class="flex-spacer"></span>
+            <div class="header-action-container">
+                <button md-icon-button (click)="editDocument()">
+                    <md-icon>mode_edit</md-icon>
+                </button>
+                <button md-icon-button (click)="removeDocument()">
+                    <md-icon>delete</md-icon>
+                </button>
+            </div>
+
+            <md-toolbar-row>
+                <!--<p class="header-subtitle">{{(document | async)?.description}}</p>-->
+                <p class="header-subtitle">{{ _document.value?.description}}</p>
+            </md-toolbar-row>
+        </md-toolbar>
+
+    </div>
+
+
+    <div class="component-page-content">
+
+        <div class="section-container">
+
+            <!-- No content found -->
+            <section class="default-text-container" *ngIf="groupList.length < 1 && sheetList.length < 1">
+                <div class="default-text">
+                    <h6 class="default-text title">No content available</h6>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-content">
+                    <md-list class="nav-link-list mdl-shadow--2dp">
+                        <!-- Sheet Groups -->
+                        <a md-list-item 
+                            class="nav-link-item" 
+                            *ngFor="let group of (groupList | sortByField:'name')"
+                            [routerLink]="['sheet-group', group.uid]" >
+
+                            <md-icon md-list-avatar class="item-avatar">folder</md-icon>
+                            
+                            <div md-line class="item-body">
+                                <div class="item-content long-width">
+                                    <span class="item-title">{{group.name}}</span>
+                                </div>
+                                <div class="item-content content-right">
+                                    <span class="item-subtitle">{{group._sheets?.length}} sheets</span>
+                                </div>
+                                <!--<div class="item-content content-right">
+                                    <span class="item-subtitle">{{group._entryNumber ? group._entryNumber : 0}} entries</span>
+                                </div>
+                                <div class="item-content content-right">
+                                    <span class="item-subtitle">{{group.modified | date:"short"}}</span>
+                                    <span class="item-subtitle">{{ timeParser(group.modified).fromNow() }}</span>
+                                </div>-->
+                            </div>
+
+                        </a>
+                        <!-- Sheets -->
+                        <a md-list-item 
+                            class="nav-link-item" 
+                            *ngFor="let sheet of (sheetList | sortByField:'name')"
+                            [routerLink]="['sheet', sheet.uid]" >
+
+                            <md-icon md-list-avatar class="item-avatar">description</md-icon>
+                            
+                            <div md-line class="item-body">
+                                <div class="item-content extra-width">
+                                    <span class="item-title">{{sheet.name ? sheet.name : "untitled"}}</span>
+                                </div>
+                                <!--<div class="item-content content-right">
+                                    <span class="item-subtitle">{{sheet._entries?.length}} entries</span>
+                                </div>
+                                <div class="item-content content-right">
+                                    <span class="item-subtitle">{{sheet.modified | date:"short"}}</span>
+                                    <span class="item-subtitle">{{ timeParser(sheet.modified).fromNow() }}</span>
+                                </div>-->
+                            </div>
+
+                        </a>
+                    </md-list>
+                </div>
+            </section>
+
+        </div>  <!-- section-container -->
+
+    </div> <!-- component-page-content -->
+
+</div> <!-- component-wrapper -->
+
+
+<!-- FAB -->
+<div class="btn-float-wrapper btn-float-bottom btn-float-right">
+    <button md-fab color="accent" class="" [mdMenuTriggerFor]="fabMenu">
+        <md-icon>add</md-icon>
+    </button>
+    
+    <!-- Use "Speed Dial" if it becomes available -->
+
+    <md-menu #fabMenu="mdMenu">
+        <button md-menu-item (click)="addNewSheetGroup()">
+            <md-icon>create_new_folder</md-icon>
+            <span>New Sheet Group</span>
+        </button>
+        <button md-menu-item (click)="addNewSheet()">
+            <md-icon>note_add</md-icon>
+            <span>New Sheet</span>
+        </button>
+    </md-menu>
+</div>

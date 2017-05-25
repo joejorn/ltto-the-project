@@ -1,0 +1,33 @@
+<div class="form-header">
+    <md-toolbar color="primary">
+        <h5 class="form-header-title">{{ (isEditing) ? 'Edit' : 'New' }} Document</h5>
+    </md-toolbar>
+</div>
+<div class="form-content">
+    <form novalidate #docForm="ngForm" (ngSubmit)="onSubmit(docForm)">
+        <div class="form-row">
+            <md-input-container>
+                <input mdInput class="form-control" 
+                    type="text" 
+                    id="name-input"
+                    name="name"
+                    placeholder="Name"
+                    [(ngModel)]="formObject.name">
+            </md-input-container>
+        </div>
+        <div class="form-row">
+            <md-input-container>
+                <input mdInput class="form-control" 
+                    type="text" 
+                    id="description-input"
+                    placeholder="Description"
+                    name="description"
+                    [(ngModel)]="formObject.description">
+            </md-input-container>
+        </div>
+        <div class="form-actions auto-space-size">
+            <button md-button type="submit">{{ (isEditing) ? 'Save' : 'Add' }}</button>
+            <button md-button type="reset" (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
+</div>

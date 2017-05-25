@@ -1,0 +1,58 @@
+<md-progress-bar mode="indeterminate" color="primary" [class.hidden]="!loading"></md-progress-bar>
+
+<md-sidenav-container class="horizon-stretch" [class.invincible]="loading">
+    
+    <md-sidenav mode="side" >
+      <!-- sidenav content -->
+      <!--<div class="component-preloading" [class.hidden]="!loading">
+          <md-spinner class="preload-spinner" color="primary"></md-spinner>
+      </div>-->
+
+      <md-nav-list [class.hidden]="loading">
+
+          <!-- Document -->
+          <div md-subheader>
+              <md-icon class="nav-link-icon">bookmark</md-icon>
+              <span>Document</span>
+          </div>
+          <md-list-item routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <a md-line class="nav-link-item sub-list-item" 
+                    [routerLink]="['./']" 
+                    routerLinkActive="active-link" 
+                    [routerLinkActiveOptions]="{exact: true}">{{ (document | async)?.name }}</a>
+          </md-list-item>
+
+          <!-- Sheet Group -->
+          <div md-subheader *ngIf="(sheetGroupList | async)?.length > 0">
+              <md-icon class="nav-link-icon">folder</md-icon>
+              <span>Sheet Groups</span>
+          </div>
+          <md-list-item *ngFor="let group of (sheetGroupList | async | sortByField:'name')">
+              <a md-line class="nav-link-item sub-list-item" 
+                [routerLink]="['sheet-group', group.uid]"
+                routerLinkActive="active-link">{{group.name}}</a>
+          </md-list-item>
+
+          <!-- Sheet -->
+          <div md-subheader *ngIf="(sheetList | async)?.length > 0">
+              <md-icon class="nav-link-icon">description</md-icon>
+              <span>Sheets</span>
+          </div>
+          <md-list-item *ngFor="let sheet of (sheetList | async | filterByFieldValue:'groupId':'$any':'exclude' | sortByField:'name' )" routerLinkActive="active-link">
+              <a md-line class="nav-link-item sub-list-item" 
+                [routerLink]="['sheet', sheet.uid]" 
+                routerLinkActive="active-link">{{sheet.name}}</a>
+          </md-list-item>
+
+      </md-nav-list>
+
+    </md-sidenav>
+
+    <div class="side-content-view">
+        
+        <!-- primary content -->
+        <router-outlet></router-outlet>
+
+    </div>
+
+</md-sidenav-container>

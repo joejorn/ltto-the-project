@@ -1,0 +1,56 @@
+<div class="preload-container" [class.hidden]="!loading">
+    <md-spinner class="preloader"></md-spinner>
+</div>
+
+<div class="component-wrapper" [class.hidden]="loading">
+
+    <header class="component-page-header" >
+
+        <!-- Toolbar -->
+        <md-toolbar class="header-panel panel-compact" color="primary">
+
+            <!-- First Row -->
+            <div class="nav-block-link">
+                <a [routerLink]="['../..']">{{ document?.name }}</a>
+            </div>
+
+            <!-- Second Row -->
+            <md-toolbar-row class="panel-line">
+                <h5 class="header-title title-medium">{{ (_sheet | async)?.name ? (_sheet | async).name : "untitled"}}</h5>
+                <span class="flex-spacer"></span>
+                <div class="header-action-container">
+                    <button md-icon-button (click)="editSheet()">
+                        <md-icon>mode_edit</md-icon>
+                    </button>
+                    <button md-icon-button (click)="removeSheet()">
+                        <md-icon>delete</md-icon>
+                    </button>
+                </div>
+            </md-toolbar-row>
+            
+        </md-toolbar>
+
+    </header>
+
+
+    <div class="component-page-content">
+
+        <div class="section-container">
+            
+            <!-- Entry List -->
+            <ltto-entry-table
+                [sheetId]="( _sheet | async )?.uid"
+                [documentId]="( _sheet | async )?.documentId"></ltto-entry-table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FAB -->
+<div class="btn-float-wrapper btn-float-bottom btn-float-right">
+    <button md-fab color="accent" (click)="addNewEntry()">
+        <md-icon>add</md-icon>
+    </button>
+</div>

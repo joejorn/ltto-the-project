@@ -1,0 +1,75 @@
+:host {
+    display: block;
+}
+
+div.component-wrapper {
+    background-color: white;
+}
+
+.component-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    min-height: 64px;
+}
+
+.component-header-title {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.pre-loading {
+    height: 32px;
+    width: 32px;
+}
+
+.table-tabs {
+    border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.tabs-container {
+    flex-wrap: wrap;
+    box-shadow: none;
+}
+
+.tab-label {
+    min-width: 80px;
+    text-align: center;
+}
+
+.table-wrapper {
+    margin-top: 20px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border: none;
+}
+
+tr {
+    font-size: 16px;
+}
+
+.cell-divider {
+    border-right: 1px solid rgba(0,0,0,.12);
+}
+
+.cell-compact {
+    width: 64px;
+}
+
+.message-wrapper {
+    padding: 1em 2em;
+}
+
+.default-message {
+    color: rgba(0,0,0,.82);
+}
+
+.hidden {
+    display: none;
+}
+

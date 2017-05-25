@@ -1,0 +1,152 @@
+:host {
+    display: block;
+    height: inherit;
+}
+
+
+/* Preload */
+.preload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    /*height: inherit;*/
+}
+.preloader {
+    height: 44px;
+    width: 44px;
+}
+
+.component-wrapper {
+    overflow-y: scroll;
+    height: inherit;
+}
+
+
+/* Header */
+.header-panel.panel-large {
+    padding: 1em 1em .5em 1em;
+}
+.header-panel.panel-compact {
+    min-height: 56px;
+    padding: 0px 8px 0px 24px;
+}
+.header-panel .panel-line {
+    height: auto !important;
+    padding: 8px 0;
+}
+
+.nav-block-link {
+    margin-top: 18px;
+    padding: 4px 8px;
+    background-color: rgba(0,0,0,.25);
+    /*border: solid 1px;*/
+}
+.nav-block-link > a {
+    color: inherit;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+/*.nav-block-link:after {
+    content: ">";
+    padding: 0 5px;
+    font-weight: 200;
+}*/
+
+/*@media (max-width: 768px) and (orientation: portrait) {
+    .nav-block-link {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    .nav-block-link {
+        display: none;
+    }
+}*/
+.header-title {
+    margin: 0;
+    font-weight: 300;
+}
+.header-title.title-medium {
+    padding-left: 8px;
+}
+.header-title.title-large {
+    font-size: 30px;
+}
+.header-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+}
+.header-action-container {
+    margin: 0 15px;
+}
+
+
+
+/* Header Tabs */
+.tab-group-container {
+    background-color: white;
+    display: flex;
+}
+
+.tab-group-wrapper {
+    flex: 1 1 auto;
+}
+
+.tab-actions {
+    display: flex;
+    align-items: center;
+    min-width: 85px;
+    justify-content: center;
+    height: auto;
+    background-color: white;
+}
+
+
+/* Buttons */
+button[md-menu-item] {
+    display: flex;
+    align-items: center;
+}
+
+.btn-float-wrapper {
+    position: absolute;
+}
+.btn-float-wrapper.btn-panel {
+    /*top: calc(128px + 1.5em - 56px/2);*/
+    top: calc(158px - 56px/2);
+}
+.btn-float-bottom {
+    bottom: 28px;
+}
+.btn-float-right {
+    right: 28px;
+}
+
+
+/* Content */
+.component-page-content {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-container {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: 2.75em auto;
+}
+
+
+/* Misc. */
+
+.flex-spacer {
+    flex: 1 1 auto;
+}
+
+.hidden {
+    display: none;
+}

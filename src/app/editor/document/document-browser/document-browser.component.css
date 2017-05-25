@@ -1,0 +1,52 @@
+:host {
+    display: block;
+    height: 100%;
+    overflow: scroll;
+    background-color: #fafafa;
+}
+.component-page-content {
+    display: block;
+    height: inherit;
+    /*background-color: #fafafa;*/
+}
+.section-container {
+    width: 85%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 24px;
+}
+
+.hidden {
+    display: none;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+}
+.section-header .section-title {
+    color: rgba(0,0,0,.62);
+}
+.section-header .section-actions {
+    display: flex;
+    align-items: baseline;
+}
+.section-actions .header-action {
+    margin: 0 10px;
+}
+
+
+/* Dialog */
+.btn-float-wrapper {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+}
+
+.mdl-dialog {
+    min-width: 320px;
+}
+
+.mdl-dialog__title {
+    font-size: 2em;
+}

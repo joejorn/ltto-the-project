@@ -1,0 +1,48 @@
+<div class="preload-container" [class.hidden]="!loading">
+    <md-spinner class="preloader" color="primary"></md-spinner>
+</div>
+
+<div class="component-page-content" [class.hidden]="loading">
+    
+    <div class="section-container">
+
+         <!-- No content found -->
+            <section class="default-text-container" *ngIf="(documentList | async)?.length < 1">
+                <div class="default-text">
+                    <h6 class="default-text title">No content available</h6>
+                </div>
+            </section>
+
+        <section>
+            <div class="section-header">
+                <h6 class="section-title">Available Document(s):</h6>
+            </div>
+            <div class="section-content">
+
+                <md-list class="nav-link-list mdl-shadow--2dp" [class.hidden]="loading">
+                    <!-- Sheet Groups -->
+                    <a md-list-item 
+                        class="nav-link-item" 
+                        *ngFor="let doc of (documentList | async | sortByField:'name')" [routerLink]="[doc.uid]" >
+                        
+                        <div md-line class="item-content">
+                            <span class="item-title">{{doc.name}}</span>
+                        </div>
+
+                        <div md-line class="item-content">
+                            <p class="item-description">{{doc.description}}</p>
+                        </div>
+                    </a>
+                </md-list>
+            </div>
+        </section>
+
+    </div> <!-- section-container -->
+
+    <!-- Float Content -->
+    <div class="btn-float-wrapper">
+        <button md-fab color="accent" (click)="onClickAddBtn()"><md-icon>add</md-icon></button>
+    </div>
+
+</div> <!-- component-page-content -->
+

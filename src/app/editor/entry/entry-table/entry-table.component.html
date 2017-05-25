@@ -1,0 +1,59 @@
+<div class="component-wrapper mdl-shadow--2dp">
+
+	<header class="component-header">
+		<h5 class="component-header-title">Entries</h5>
+		<div class="component-header-actions">
+			<!--<button md-icon-button (click)="openForm()"><md-icon>add</md-icon></button>-->
+			<!--<button md-icon-button><md-icon>mode_edit</md-icon></button>-->
+		</div>
+	</header>
+
+	<div class="component-content">
+
+		<div class="table-tabs">
+			<md-button-toggle-group *ngIf="categories" class="tabs-container" #group="mdButtonToggleGroup" (change)="onCategoryChange($event)">
+				<md-button-toggle value="$all" [checked]="true">
+					<div class="tab-label">All</div>
+				</md-button-toggle>
+				
+				<md-button-toggle *ngFor="let category of categories" value="{{category.uid}}">
+					<div class="tab-label">{{category.name}}</div>
+				</md-button-toggle>
+
+			</md-button-toggle-group>
+		</div>
+
+		<div class="table-wrapper">
+			<table class="mdl-data-table">
+				<thead>
+					<tr>
+						<th [ngClass]="col.class" *ngFor="let col of (columns | setVisibleCell:'vertical':activeCategory)"
+							[class.hidden]="col._hidden">
+							<span>{{col.name}}</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let entry of (entries | async | setVisibleCell:'horizontal':activeCategory:priceList); let rowIndex = index;" 
+						[class.hidden]="entry._hidden" (click)="editEntry(entry)">
+
+						<td [ngClass]="col.class" 
+							*ngFor="let col of columns; let colIndex = index;"
+							[class.hidden]="col._hidden">
+							<span>{{ colIndex < baseColumns.length ?  entry[col.property] : entry.prices[col.property]}}</span>
+						</td>
+					</tr>
+					
+					<!-- Default Text -->
+					<tr *ngIf="(entries | async | setVisibleCell:'horizontal':activeCategory:priceList | countVisibleCell:'_categoryId':activeCategory) < 1">
+						<td [ngClass]="_defaultRow.class" [attr.colspan]="(columns).length">
+							<span class="default-message">{{_defaultRow.content}}</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>	
+
+</div>

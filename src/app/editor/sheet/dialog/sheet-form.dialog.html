@@ -1,0 +1,39 @@
+<div class="form-header">
+    <md-toolbar color="primary">
+        <h5 class="form-header-title">{{ (isEditing) ? 'Edit ' : 'New '}} Sheet</h5>
+    </md-toolbar>
+</div>
+<div class="form-content">
+
+    <form id="sheet-form" (ngSubmit)="onSubmit(sheetForm)" [formGroup]="sheetForm">
+
+        <div class="form-row">
+            <md-input-container>
+                <input mdInput type="text" 
+                    id="sheet-name-input" 
+                    name="name"
+                    placeholder="Name"
+                    formControlName="name">
+            </md-input-container>
+        </div>
+
+        <div class="form-row drop-down">
+            <md-select id="sheet-group-input"
+                name="groupId"
+                placeholder="Sheet Group"
+                form="sheet-form"
+                formControlName="groupId">
+                <md-option value>None</md-option>
+                <md-option *ngFor="let group of groupList"
+                    [value]="group.uid">{{ group.name }}</md-option>
+            </md-select>
+        </div>
+
+        <div class="form-actions auto-space-size">
+            <button md-button type="submit">{{ (isEditing) ? 'Save' : 'Add' }}</button>
+            <button md-button type="reset" (click)="dialogRef.close()">Cancel</button>
+        </div>
+
+    </form>
+
+</div>
