@@ -40,7 +40,7 @@ export class EntryTableComponent implements OnInit, OnChanges {
 				categoryId: EntryTableComponent.DEFAULT_CATEGORY
 			},
 			{ 	
-				name: 'Title', 
+				name: 'รายการ', 
 				property: 'name', 
 				class: 'mdl-data-table__cell--non-numeric',
 				categoryId: EntryTableComponent.DEFAULT_CATEGORY
@@ -49,7 +49,7 @@ export class EntryTableComponent implements OnInit, OnChanges {
 	
 	// Default Row
 	private _defaultRow = {
-		content: 'No entry found.',
+		content: 'ไม่พบรายการใดๆ',
 		class: 'mdl-data-table__cell--non-numeric'
 	}
 

@@ -1,7 +1,7 @@
 <div class="component-wrapper mdl-shadow--2dp">
 
 	<header class="component-header">
-		<h5 class="component-header-title">Entries</h5>
+		<h5 class="component-header-title">รายการซื้อขาย</h5>
 		<div class="component-header-actions">
 			<!--<button md-icon-button (click)="openForm()"><md-icon>add</md-icon></button>-->
 			<!--<button md-icon-button><md-icon>mode_edit</md-icon></button>-->
@@ -13,7 +13,7 @@
 		<div class="table-tabs">
 			<md-button-toggle-group *ngIf="categories" class="tabs-container" #group="mdButtonToggleGroup" (change)="onCategoryChange($event)">
 				<md-button-toggle value="$all" [checked]="true">
-					<div class="tab-label">All</div>
+					<div class="tab-label">ทั้งหมด</div>
 				</md-button-toggle>
 				
 				<md-button-toggle *ngFor="let category of categories" value="{{category.uid}}">

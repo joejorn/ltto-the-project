@@ -1,6 +1,6 @@
 <div class="form-header">
     <md-toolbar color="primary">
-        <h5 class="form-header-title">{{ (isEditing) ? 'Edit ' : 'New ' }} Entry</h5>
+        <h5 class="form-header-title">{{ (isEditing) ? 'แก้ไขรายการ' : 'เพิ่มรายการใหม่' }}</h5>
     </md-toolbar>
 </div>
 <div class="form-content">
@@ -11,7 +11,7 @@
             <div class="inputs-container">
                 <div class="form-row">
                     <md-input-container [floatPlaceholder]="always">
-                        <input mdInput type="text" placeholder="Name" name="name" formControlName="name">
+                        <input mdInput type="text" placeholder="รายการ" name="name" formControlName="name">
                     </md-input-container>
                 </div>
             </div>
@@ -20,7 +20,7 @@
         <!-- Prices -->
         <div class="form-row form-section">
             <div class="section-header">
-                <h6 class="section-header-title">Price List</h6>
+                <h6 class="section-header-title">รายละเอียดราคา</h6>
                 <md-button-toggle-group class="toggler-container" #group="mdButtonToggleGroup">
                     <md-button-toggle 
                         *ngFor="let category of categories; let i = index" 
@@ -51,7 +51,7 @@
             <div class="inputs-container">
                 <div class="form-row">
                     <md-input-container >
-                        <input mdInput type="text" placeholder="Remark (optional)" name="remark" formControlName="remark">
+                        <input mdInput type="text" placeholder="เพิ่มเติม" name="remark" formControlName="remark">
                     </md-input-container>
                 </div>
             </div>
@@ -60,10 +60,10 @@
         <!-- Buttons -->
         <div class="form-actions auto-space-size">
             <!-- Text Buttons -->
-            <button md-button type="submit" (click)="setNext(false)">Save</button>
-            <button md-button *ngIf="!isEditing" type="submit" (click)="setNext(true)">Save & Next</button>
-            <button md-button type="reset"  (click)="dialogRef.close()">Cancel</button>
-            <button md-button *ngIf="isEditing" type="button" (click)="onRemove()">Remove</button>
+            <button md-button type="submit" (click)="setNext(false)">บันทึก</button>
+            <button md-button *ngIf="!isEditing" type="submit" (click)="setNext(true)">บันทึก & ถัดไป</button>
+            <button md-button type="reset"  (click)="dialogRef.close()">ยกเลิก</button>
+            <button md-button *ngIf="isEditing" type="button" (click)="onRemove()">ลบ</button>
             
             <!-- Icon Buttons -->
             <!--<button md-icon-button class="primary-btn" type="submit" (click)="setNext(false)"><md-icon>{{ !isEditing ? "done_all":"done" }}</md-icon></button>

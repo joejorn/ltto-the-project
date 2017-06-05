@@ -13,7 +13,7 @@
           <!-- Document -->
           <div md-subheader>
               <md-icon class="nav-link-icon">bookmark</md-icon>
-              <span>Document</span>
+              <span>เอกสาร</span>
           </div>
           <md-list-item routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <a md-line class="nav-link-item sub-list-item" 
@@ -25,7 +25,7 @@
           <!-- Sheet Group -->
           <div md-subheader *ngIf="(sheetGroupList | async)?.length > 0">
               <md-icon class="nav-link-icon">folder</md-icon>
-              <span>Sheet Groups</span>
+              <span>กลุ่มใบซื้อขาย</span>
           </div>
           <md-list-item *ngFor="let group of (sheetGroupList | async | sortByField:'name')">
               <a md-line class="nav-link-item sub-list-item" 
@@ -36,7 +36,7 @@
           <!-- Sheet -->
           <div md-subheader *ngIf="(sheetList | async)?.length > 0">
               <md-icon class="nav-link-icon">description</md-icon>
-              <span>Sheets</span>
+              <span>ใบซื้อขาย</span>
           </div>
           <md-list-item *ngFor="let sheet of (sheetList | async | filterByFieldValue:'groupId':'$any':'exclude' | sortByField:'name' )" routerLinkActive="active-link">
               <a md-line class="nav-link-item sub-list-item" 

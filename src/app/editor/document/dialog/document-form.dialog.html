@@ -1,6 +1,6 @@
 <div class="form-header">
     <md-toolbar color="primary">
-        <h5 class="form-header-title">{{ (isEditing) ? 'Edit' : 'New' }} Document</h5>
+        <h5 class="form-header-title">{{ (isEditing) ? 'แก้ไขเอกสาร' : 'เอกสารใหม่' }}</h5>
     </md-toolbar>
 </div>
 <div class="form-content">
@@ -26,8 +26,8 @@
             </md-input-container>
         </div>
         <div class="form-actions auto-space-size">
-            <button md-button type="submit">{{ (isEditing) ? 'Save' : 'Add' }}</button>
-            <button md-button type="reset" (click)="onCancel()">Cancel</button>
+            <button md-button type="submit">{{ (isEditing) ? 'บันทึก' : 'เพิ่ม' }}</button>
+            <button md-button type="reset" (click)="onCancel()">ยกเลิก</button>
         </div>
     </form>
 </div>

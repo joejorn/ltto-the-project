@@ -1,6 +1,6 @@
 <div class="form-header">
     <md-toolbar color="primary">
-        <h5 class="form-header-title">{{ (isEditing) ? 'Edit ' : 'New '}} Sheet Group</h5>
+        <h5 class="form-header-title">{{ (isEditing) ? 'แก้ไขกลุ่มใบซื้อขาย' : 'เพิ่มกลุ่มใบซื้อขายใหม่'}}</h5>
     </md-toolbar>
 </div>
 <div class="form-content">
@@ -10,7 +10,7 @@
             <md-input-container >
                 <input mdInput 
                     id="group-name-input" 
-                    placeholder="Name" 
+                    placeholder="ชื่อ" 
                     name="name" formControlName="name">
             </md-input-container>
         </div>
@@ -18,7 +18,7 @@
         <!-- Sheets -->
         <div class="form-row form-section" *ngIf="_sheetList && _sheetList.length > 0">
             <div class="section-header">
-                <h6 class="section-header-title">Sheets</h6>
+                <h6 class="section-header-title">ใบซื้อขาย</h6>
             </div>
             <div class="checkbox-container" formGroupName="members">
                 <md-checkbox *ngFor="let sheet of (_sheetList | sortByField:'name')" 
@@ -30,8 +30,8 @@
 
         <!-- Buttons -->
         <div class="form-actions auto-space-size">
-            <button md-button type="submit">{{ (isEditing) ? 'Save' : 'Add' }}</button>
-            <button md-button type="reset" (click)="dialogRef.close()">Cancel</button>
+            <button md-button type="submit">{{ (isEditing) ? 'บันทึก' : 'เพิ่ม' }}</button>
+            <button md-button type="reset" (click)="dialogRef.close()">ยกเลิก</button>
         </div>
 
     </form>

@@ -35,7 +35,7 @@
             <!-- No content found -->
             <section class="default-text-container" *ngIf="groupList.length < 1 && sheetList.length < 1">
                 <div class="default-text">
-                    <h6 class="default-text title">No content available</h6>
+                    <h6 class="default-text title">ไม่พบเนื้อหา</h6>
                 </div>
             </section>
 
@@ -55,7 +55,7 @@
                                     <span class="item-title">{{group.name}}</span>
                                 </div>
                                 <div class="item-content content-right">
-                                    <span class="item-subtitle">{{group._sheets?.length}} sheets</span>
+                                    <span class="item-subtitle">{{group._sheets?.length}} ใบ</span>
                                 </div>
                                 <!--<div class="item-content content-right">
                                     <span class="item-subtitle">{{group._entryNumber ? group._entryNumber : 0}} entries</span>
@@ -77,7 +77,7 @@
                             
                             <div md-line class="item-body">
                                 <div class="item-content extra-width">
-                                    <span class="item-title">{{sheet.name ? sheet.name : "untitled"}}</span>
+                                    <span class="item-title">{{sheet.name ? sheet.name : "ไม่มีชื่อ"}}</span>
                                 </div>
                                 <!--<div class="item-content content-right">
                                     <span class="item-subtitle">{{sheet._entries?.length}} entries</span>
@@ -111,11 +111,11 @@
     <md-menu #fabMenu="mdMenu">
         <button md-menu-item (click)="addNewSheetGroup()">
             <md-icon>create_new_folder</md-icon>
-            <span>New Sheet Group</span>
+            <span>เพิ่มกลุ่มใบซื้อขาย</span>
         </button>
         <button md-menu-item (click)="addNewSheet()">
             <md-icon>note_add</md-icon>
-            <span>New Sheet</span>
+            <span>เพิ่มใบซื้อขาย</span>
         </button>
     </md-menu>
 </div>
