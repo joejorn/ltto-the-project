@@ -1,9 +1,9 @@
 <header>
 
   <md-toolbar color="primary">
-    <span class="main-logo">{{ title }}</span>
+    <a class="main-logo" [routerLink]="['/']" >{{ title }}</a>
     <span class="flex-spacer"></span>
-    <nav class="main-nav-wrapper">
+    <nav class="main-nav">
       <md-nav-list class="main-nav-list">
         <md-list-item [class.active]="rla.isActive" *ngFor="let link of links">
           <a  [routerLink]="link.routerlink" 
@@ -21,12 +21,29 @@
             </div>
             <button md-menu-item (click)="onLogout()">
               <md-icon>lock_open</md-icon>
-              <span>Sign out</span>
+              <span>ออกจากระบบ</span>
             </button>
           </md-menu>
         </div>
  
       </md-nav-list>
+    </nav>
+    <nav class="compact-nav">
+        <md-menu #appMenu="mdMenu">
+          <button md-menu-item *ngFor="let link of links" (click)="router.navigate(link.routerlink)">
+            <md-icon>{{link.icon}}</md-icon>
+            <span>{{link.label}}</span>
+          </button>
+          <md-divider></md-divider>
+          <button md-menu-item (click)="onLogout()">
+              <md-icon>lock_open</md-icon>
+              <span>ออกจากระบบ</span>
+            </button>
+        </md-menu>
+
+        <button md-button class="compact-menu-btn" [mdMenuTriggerFor]="appMenu">
+          <span>เมนู</span>
+        </button>
     </nav>
     
 
