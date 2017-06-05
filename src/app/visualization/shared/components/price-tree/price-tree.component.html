@@ -18,11 +18,12 @@
         
         <ul class="plain-value-list">
             
-            <li class="item-row" *ngFor="let valueItem of (values | sortByField:'name')">
+            <!--<li class="item-row" *ngFor="let valueItem of (values | sortByField:'name')">-->
+            <li class="item-row" *ngFor="let valueItem of values">
                 <div class="line-wrapper">
                     <div class="line-content">
                         <span class="content-title">{{ valueItem.name }}</span>
-                        <span class="content-value">{{ valueItem.value.toLocaleString("en") }}</span>
+                        <span class="content-value" [class.negative]="valueItem.value < 0">{{ valueItem.value.toLocaleString("en") }}</span>
                     </div>
                 </div>
             </li>
@@ -31,8 +32,8 @@
             <li class="item-row after-end-row" *ngIf="enableSum && !title">
                 <div class="line-wrapper">
                     <div class="line-content">
-                        <span class="content-title">TOTAL</span>
-                        <span class="content-value">{{ valueSum.toLocaleString("en") }}</span>
+                        <span class="content-title">รวม</span>
+                        <span class="content-value" [class.positive]="valueSum > 0" [class.negative]="valueSum < 0">{{ valueSum.toLocaleString("en") }}</span>
                     </div>
                 </div>
             </li>
@@ -47,7 +48,8 @@
         
         <ul class="plain-value-list">
 
-            <li class="sub-item" *ngFor="let subItem of ( items | sortByField:'name')">
+            <!--<li class="sub-item" *ngFor="let subItem of ( items | sortByField:'name')">-->
+            <li class="sub-item" *ngFor="let subItem of items">
 
                 <div class="sub-item-header" *ngIf="subItem?.name">
                     <div class="line-wrapper">

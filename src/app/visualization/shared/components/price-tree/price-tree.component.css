@@ -2,13 +2,14 @@
     display: block;
 }
 .plain-value-list {
-    padding: 0; 
+    padding: 8px 0;
     list-style-type:none;
 }
 .item-row.after-end-row {
     border-top: lightgray 1px solid;
     text-transform: uppercase;
-    font-weight: 600;
+    /*font-weight: 600;*/
+    padding: 8px 0;
 }
 .item-header {
     font-weight: 600;
@@ -54,6 +55,13 @@
     justify-content: space-between;
     flex: 1;
 }
+.line-content .content-value.positive {
+    color: #4CAF50;
+}
+.line-content .content-value.negative {
+    color: red;
+}
+
 .toggled {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
