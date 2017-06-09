@@ -53,6 +53,10 @@ export class PlotlyComponent implements OnInit, AfterViewInit, OnDestroy {
     ngAfterViewInit() {
 
         let elem = this.chartWrapper.nativeElement;
+
+        // resolve webkit-bug
+        this.layout.height = 205;
+
         Plotly.newPlot( elem, this.data, this.layout, this.options );
         this.resizeListener();
 

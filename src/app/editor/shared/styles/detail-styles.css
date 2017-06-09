@@ -29,7 +29,7 @@
 }
 .header-panel.panel-compact {
     min-height: 56px;
-    padding: 0px 8px 0px 24px;
+    padding: 0px 8px;
 }
 .header-panel .panel-line {
     height: auto !important;
@@ -39,9 +39,6 @@
 .nav-block-link {
     display: flex;
     margin-top: 18px;
-    /*padding: 4px 8px;
-    background-color: rgba(0,0,0,.25);
-    border: solid 1px;*/
 }
 .nav-block-link > a {
     color: inherit;
@@ -50,23 +47,8 @@
     text-decoration: none;
     text-transform: uppercase;
 }
-/*.nav-block-link:after {
-    content: ">";
-    padding: 0 5px;
-    font-weight: 200;
-}*/
 
-/*@media (max-width: 768px) and (orientation: portrait) {
-    .nav-block-link {
-        display: block;
-    }
-}
 
-@media (min-width: 769px) {
-    .nav-block-link {
-        display: none;
-    }
-}*/
 .header-title {
     margin: 0;
     font-weight: 300;
@@ -113,8 +95,12 @@ button[md-menu-item] {
     align-items: center;
 }
 
+/* Resolve: issue in safari */
+button > md-icon {
+    align-self: center;
+}
+
 .btn-float-wrapper {
-    /*position: absolute;*/
     position: -webkit-sticky;
     position: sticky;
     text-align: right;
