@@ -10,12 +10,20 @@
 .component-header {
     margin-bottom: 2em;
 }
+.component-header .header-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
 .component-title {
     text-transform: uppercase;
+    margin-right: 1em;
 }
 .component-subtitle {
     font-size: 20px;
-    margin-bottom: 4em;
+    margin-bottom: 2em;
+    color: gray;
+    font-weight: 100;
 }
 .component-section {
     margin-bottom: 3em;

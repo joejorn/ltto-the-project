@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit, NgZone, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MdSidenav } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
 import { PriceListComponent } from '../../../shared/components/price-list/price-list.component';
 import { VisualizationDataService } from '../../../shared/services/visualization-data.service';
@@ -14,55 +14,71 @@ import { VisualizationDataService } from '../../../shared/services/visualization
 export class DocumentSummaryComponent implements AfterViewInit, OnInit {
 
     private selected: any;
+    private compactMode: boolean;
+
     @Input() documents: any[];
-    @Input() priceList: any[];  // @TODO: remove this
     priceCategories: any[];
 
     @ViewChild(MdSidenav) sideNav: MdSidenav;
     @ViewChild(PriceListComponent) menuList: PriceListComponent;
 
     
-    constructor(private _ngZone: NgZone, private route: ActivatedRoute, private dataService: VisualizationDataService) {
+    constructor(
+        private dataService: VisualizationDataService,
+        private _ngZone: NgZone
+    ) {
         this.documents = [];
-        this.priceList = [];
     }
 
     ngOnInit() {
-        this.route.data.subscribe(
-            (data: { documents: any[], prices: any[], priceCategories: any[] }) => {
-                this.documents = data.documents
-                this.priceList = data.prices;   // @TODO: remove this
-                this.priceCategories = data.priceCategories;
-                console.log('price categories: ', data.priceCategories);
+        this.documents = [];
+        this.priceCategories = [];
+
+        Observable.forkJoin(
+            this.dataService.getDetailedPriceCategories().first(),
+            this.dataService.getDocuments().first()
+        ).subscribe(
+            values => {
+                this.priceCategories = values[0];
+                this.documents = values[1];
             }
-        );
+        )
     }
 
     ngAfterViewInit(): void {
-        this.menuList.selectedIndex = 0;
-        /*if (this.sideNav) {
+        if (this.sideNav) {
             window.onresize = (e) => this._ngZone.run( () => this.initSideBar() );
-            this._ngZone.run( () => this.initSideBar() );
-        }*/
+        }
+        this._ngZone.run( () => this.initSideBar() );
 	}
 
-    /*private initSideBar(): void {
-		if (window.innerWidth > 768) {
+    private initSideBar(): void {
+		if (window.innerWidth > 700) {
+            this.compactMode = false;
 			this.sideNav.open();
 		} else {
+            this.compactMode = true;
 			this.sideNav.close();
 		}
-	}*/
+	}
 
     private onSelectedChange( o: any ) {
-        // this.selected = o;
 
-        this.dataService.getDetailDocument(o.uid).first()
-            .subscribe(
-                doc => { 
-                    this.selected = doc; 
-                }
-            )
+        if (!o) {
+            return;
+        } else {
+            // retrive detailed document
+            this.dataService.getDetailDocument(o.uid).first()
+                .subscribe(
+                    doc => { 
+                        this.selected = doc; 
+                        if (this.compactMode) {
+                            this.sideNav.close();
+                        }
+                    }
+                )
+        }
+
         
         
     }

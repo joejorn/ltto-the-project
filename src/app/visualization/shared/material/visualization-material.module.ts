@@ -5,8 +5,10 @@ import {
         MdIconModule,
         MdListModule,
         MdMenuModule,
-        MdProgressBarModule,
+        // MdProgressBarModule,
+        MdProgressSpinnerModule,
         MdSidenavModule,
+        MdToolbarModule
     } from '@angular/material';
 
 @NgModule({
@@ -16,8 +18,10 @@ import {
     MdIconModule,
     MdListModule,
     MdMenuModule,
-    MdProgressBarModule,
+    // MdProgressBarModule,
+    MdProgressSpinnerModule,
     MdSidenavModule,
+    MdToolbarModule
   ],
   exports: [
     MdButtonModule,
@@ -25,8 +29,10 @@ import {
     MdIconModule,
     MdListModule,
     MdMenuModule,
-    MdProgressBarModule,
+    // MdProgressBarModule,
+    MdProgressSpinnerModule,
     MdSidenavModule,
+    MdToolbarModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

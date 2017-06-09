@@ -1,7 +1,11 @@
 <div class="component-wrapper">
 			
     <div class="component-header">
-        <h3 class="component-title">{{ document?.name ? document.name : "Untitled" }}</h3>
+        <div class="header-row">
+            <h3 class="component-title">{{ document?.name ? document.name : "ไม่มีชื่อ" }} 
+            </h3>
+            <a *ngIf="document" [routerLink]="['..','document', document.uid]"><md-icon>launch</md-icon></a>
+        </div>
         <p class="component-subtitle" *ngIf="document?.description">{{ document?.description }}</p>
     </div>
     
@@ -11,7 +15,7 @@
             <!-- Summary -->
             <section class="component-section">
                 <div class="section-header">
-                    <h6 class="section-title">summary</h6>
+                    <h5 class="section-title">ยอดรวม</h5>
                 </div>
                 <div class="section-content">
                     
@@ -25,7 +29,7 @@
             
             <section class="component-section">
                 <div class="section-header">
-                    <h6 class="section-title">sheet groups &amp; sheets </h6>
+                    <h5 class="section-title">การซื้อขาย</h5>
                 </div>
                 <div class="section-content">
                     
@@ -56,7 +60,7 @@
                     </ul>
 
                     <div class="default-text-container" *ngIf="document?._sheets.length < 1 && document?._sheetGroups.length < 1">
-                        <p class="default-text">No Content available.</p>
+                        <span class="default-text">ไม่พบข้อมูล</span>
                     </div>
 
                 </div>

@@ -11,6 +11,7 @@ import { DocumentVisualizationComponent } from "./document-visualization/documen
 @NgModule({
 	imports: [ 
 		CommonModule,
+		RouterModule,
 		VisualizationSharedModule
 	],
   	declarations: [

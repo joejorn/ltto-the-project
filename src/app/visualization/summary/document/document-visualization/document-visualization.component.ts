@@ -55,7 +55,20 @@ export class DocumentVisualizationComponent implements OnInit, OnChanges {
         if ( this.document._entries ) {
             entries = this.document._entries;
         }
-        this.document._sum = this.getSum( entries );
+
+        // include the multiplied prices
+        let includeNetFunc = (acc: any[], b: any) => {
+                                let arr = [ { name: b.name, value: b.value } ];
+                                if (b.value !== 0 && b.multiplier && b.multiplier.factor !== 0) {
+                                    let _str = `(${b.multiplier.factor * 100} %)`;
+                                    arr.push({name: _str, value: b.multiplier.value});
+                                }
+
+                                return acc.concat(arr);
+                            }
+
+        this.document._sum = this.getSum( entries ).reduce( includeNetFunc, [] );
+        
     }
 
     private computeSheetSum() {
@@ -66,7 +79,7 @@ export class DocumentVisualizationComponent implements OnInit, OnChanges {
                     let entries = this.document._entries.filter(
                         entry => entry.sheetId === sheet.uid
                     )
-                    sheet._sum = this.getSum( entries );
+                    sheet._sum = this.getSum( entries, true );
                 }
             )
         }
@@ -93,9 +106,9 @@ export class DocumentVisualizationComponent implements OnInit, OnChanges {
         }
     }
 
-    private getSum( entries: any[] ) {
-        // grouped by category
-        return this.fnService.getSumByCategory( this.priceList, entries );
+    // grouped by price category
+    private getSum( entries: any[], grossPriceOnly: boolean = false ) {
+        return this.fnService.getSumByPriceCategory(this.priceCategories, entries, grossPriceOnly);
     }
     
 }

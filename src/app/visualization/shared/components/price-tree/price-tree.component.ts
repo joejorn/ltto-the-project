@@ -36,13 +36,15 @@ export class PriceTreeComponent implements OnChanges {
         if ( changes['items'] ) {
             let _items = changes['items'].currentValue;
             let itemValues = [];    // value collection of all items
-            _items.forEach( item => { 
-                if (item.values) {
-                    itemValues.concat(item.values) 
-                }
-                item.valueSum = this.getValueSum( item.values );
-                itemValues = itemValues.concat(item.values);
-            })
+            if (_items) {
+                _items.forEach( item => { 
+                    if (item.values) {
+                        itemValues.concat(item.values) 
+                    }
+                    item.valueSum = this.getValueSum( item.values );
+                    itemValues = itemValues.concat(item.values);
+                });
+            }
 
             // update values and sum
             let newValues = this.mergeValues(itemValues);

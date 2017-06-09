@@ -1,15 +1,17 @@
-<md-progress-bar mode="indeterminate" color="primary" [class.hidden]="!loading"></md-progress-bar>
+<div class="preload-container" [class.hidden]="!loading">
+    <md-spinner class="preloader" color="primary"></md-spinner>
+</div>
 
-<div class="component-page-content">
+<div class="component-page-content" [class.invincible]="loading">
 
-    <div class="section-container" [class.invincible]="loading">
+    <div class="section-container">
 
         <!-- Overview -->
         <section>
 
-            <md-grid-list cols="9" gutterSize="18px" rowHeight="100px">
+            <md-grid-list [cols]="compactMode ? 1:3" gutterSize="18px" rowHeight="100px">
 
-                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="2" >
+                <!--<md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="2" >
                     <div class="tile-wrapper">
                         <div class="tile-body">
                             
@@ -39,16 +41,45 @@
 
                         </div>
                     </div>
-                </md-grid-tile>
+                </md-grid-tile>-->
 
-                <!-- Overall SUM -->
-                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="3" >
+                <!-- Gross SUM -->
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="1" >
                     <div class="tile-wrapper">
                         <div class="tile-body">
 
                             <ltto-metric-chart 
-                                [title]="'Total'" 
-                                [amount]="lastSum"
+                                title="ยอดรวม" 
+                                [amount]="lastSums?.grossSum"
+                                [displayCurrency]="true"></ltto-metric-chart>
+
+                        </div>
+                    </div>
+                </md-grid-tile>
+
+                <!-- Multiplied SUM -->
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="1" >
+                    <div class="tile-wrapper">
+                        <div class="tile-body">
+
+                            <ltto-metric-chart 
+                                title="หักลบ" 
+                                [amount]="lastSums?.multipliedSum"
+                                [enableNegative]="true"
+                                [displayCurrency]="true"></ltto-metric-chart>
+
+                        </div>
+                    </div>
+                </md-grid-tile>
+
+                <!-- Net SUM -->
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="1" >
+                    <div class="tile-wrapper">
+                        <div class="tile-body">
+
+                            <ltto-metric-chart 
+                                title="ผลรวมสุทธิ" 
+                                [amount]="lastSums?.netSum"
                                 [enableNegative]="true"
                                 [displayCurrency]="true"></ltto-metric-chart>
 
@@ -66,11 +97,11 @@
         <!-- Charts -->
         <section>
 
-            <md-grid-list cols="5" gutterSize="18px" rowHeight="280px">
+            <md-grid-list [cols]="compactMode ? 1:5" gutterSize="18px" rowHeight="280px">
 
-                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="2" >
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="compactMode ? 1:2" >
 
-                    <ltto-dashboard-tile title="Price Categories">
+                    <ltto-dashboard-tile title="ประเภทราคา">
                         
                         <ltto-pie-chart tile-content 
                             *ngIf="documents && documents.length > 0"
@@ -81,9 +112,9 @@
 
                 </md-grid-tile>
 
-                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="3" >
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="compactMode ? 1:3" >
                     
-                    <ltto-dashboard-tile title="Prices">
+                    <ltto-dashboard-tile title="ราคา">
                         
                         <ltto-bar-chart tile-content 
                             *ngIf="documents && documents.length > 0"
@@ -101,13 +132,16 @@
         <!-- Top List -->
         <section>
 
-            <md-grid-list cols="5" gutterSize="18px" 
-                    [rowHeight]=" (uniqueEntries.length >= maxListSize || documents?.length >= maxListSize) ? '380px':'342px'">
+            <md-grid-list 
+                [cols]="compactMode ? 1:5" gutterSize="18px" 
+                [rowHeight]=" (uniqueEntries.length >= MAX_LIST_SIZE || documents?.length >= MAX_LIST_SIZE) ? '380px':'342px'">
 
                 <!-- Top Entries -->
-                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="2">
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="compactMode ? 1:2">
 
-                    <ltto-dashboard-tile [title]="activeTopPrice ? 'Top Entries - ' + activeTopPrice?.name : 'Top Entries' ">
+                    <ltto-dashboard-tile #entryTopList
+                        [title]="activeTopPrice ? 'อันดับรายการ - ' + activeTopPrice?.name : 'Top Entries' "
+                        [showFooter]="uniqueEntries.length > MAX_LIST_SIZE">
                         
                         <div tile-action>
                             <button class="tile-action icon-btn" md-icon-button [mdMenuTriggerFor]="menu">
@@ -125,32 +159,38 @@
                             *ngIf="uniqueEntries.length > 0"
                             [items]="uniqueEntries" 
                             [valuePath]="activeTopPrice?.property" 
-                            [maxItem]="maxListSize"
+                            [maxItem]="MAX_LIST_SIZE"
                             [sortProperty]="activeTopPrice?.property"
-                            sortDirection="descending" indexed="true"></ltto-price-list>
+                            sortDirection="descending" indexed="true" sorted="true"></ltto-price-list>
 
-                        <div *ngIf="uniqueEntries.length > maxListSize" tile-footer>
-                            <button md-button class="tile-action btn">See the complete list</button>
+                        <div tile-footer>
+                            <button md-button 
+                                class="tile-action btn" 
+                                (click)="openPriceListDialog(entryTopList.title, uniqueEntries, activeTopPrice?.property)">แสดงทั้งหมด</button>
                         </div>
 
                     </ltto-dashboard-tile>
 
                 </md-grid-tile>
 
-                <!-- TOP Documents -->
-                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="3">
+                <!-- Top Documents -->
+                <md-grid-tile class="mdl-shadow--2dp grid-tile" [colspan]="compactMode ? 1:3">
 
-                    <ltto-dashboard-tile title="Top Documents">
+                    <ltto-dashboard-tile #docTopList
+                        title="อันดับเอกสาร"
+                        [showFooter]="documents.length > MAX_LIST_SIZE">
 
                         <ltto-price-list tile-content 
                             *ngIf="documents?.length > 0"
                             [items]="documents" 
-                            [maxItem]="maxListSize"
+                            [maxItem]="MAX_LIST_SIZE"
                             sortProperty="value"
-                            sortDirection="descending" indexed="true"></ltto-price-list>
+                            sortDirection="descending" indexed="true" sorted="true"></ltto-price-list>
                             
-                        <div tile-footer *ngIf="documents.length > maxListSize">
-                            <button md-button class="tile-action btn">See the complete list</button>
+                        <div tile-footer>
+                            <button md-button 
+                                class="tile-action btn"
+                                (click)="openPriceListDialog(docTopList.title, documents)">แสดงทั้งหมด</button>
                         </div>
 
                     </ltto-dashboard-tile>
