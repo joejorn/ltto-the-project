@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
-import { AlertService } from '../../../../core/alert/alert.service';
+import { ConfirmService } from '../../../../core/alert/alert.service';
 import { SheetDataService } from '../../../../service-module/database/data/sheet/sheet.service';
 import { SheetFormDialog } from '../../../sheet/dialog/sheet-form.dialog';
 
@@ -12,7 +12,7 @@ export class SheetEditorService {
 
     constructor( 
         private dataService: SheetDataService,
-        private alertService: AlertService,
+        private confirmService: ConfirmService,
         private dialog: MdDialog 
     ){}
 
@@ -68,18 +68,17 @@ export class SheetEditorService {
     }
 
     removeSheet(o: any, callback?: any): void {
-        let objTxt = `"${o.name}" including its entries`;
-        let title = `Are you sure you want to delete ${objTxt}?`;
-        let subtitle = 'The item(s) will be deleted permanently. You can’t undo this action.';
+        let title = `ยืนยันการลบ "${o.name}" และรายการซื้อขายที่เกี่ยวข้อง`;
+        let subtitle = 'ข้อมูลที่ถูกลบจะไม่สามารถกู้คืนได้อีก';
         
-        this.alertService.openConfirmDialog(title, subtitle)
+        this.confirmService.openConfirmDialog(title, subtitle)
             .subscribe( 
                 bool => {
                     if (bool) { // continue deletion
                         this.dataService.remove(o)
                             .then(
                                 o => {
-                                    console.log(`Sheet-"${o.name}" has been removed.`);
+                                    // console.log(`Sheet-"${o.name}" has been removed.`);
                                     if (callback) {
                                         callback(o);
                                     }

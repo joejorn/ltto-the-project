@@ -49,7 +49,7 @@ export class EntryTableComponent implements OnInit, OnChanges {
 	
 	// Default Row
 	private _defaultRow = {
-		content: 'ไม่พบรายการใดๆ',
+		content: 'ไม่พบรายการ',
 		class: 'mdl-data-table__cell--non-numeric'
 	}
 

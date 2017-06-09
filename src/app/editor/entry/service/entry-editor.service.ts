@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
-import { AlertService } from '../../../core/alert/alert.service';
+import { ConfirmService } from '../../../core/alert/alert.service';
 import { EntryFormDialog } from '../dialog/entry-form.dialog';
 import { EntryDataService } from '../../../service-module/database/data/entry/entry.service';
 import { PreferenceService } from "../../../service-module/database/preference/preference.service";
@@ -14,7 +14,7 @@ export class EntryEditorService {
     constructor( 
         private dataService: EntryDataService,
         private prefService: PreferenceService,
-        private alertService: AlertService,
+        private confirmService: ConfirmService,
         private dialog: MdDialog
     ){}
 
@@ -65,7 +65,7 @@ export class EntryEditorService {
         let title = `Are you sure you want to delete ${objTxt}?`;
         let subtitle = 'The item(s) will be deleted permanently. You can’t undo this action.';
         
-        this.alertService.openConfirmDialog(title, subtitle)
+        this.confirmService.openConfirmDialog(title, subtitle)
             .subscribe( 
                 bool => {
                     if (bool) { // continue deletion

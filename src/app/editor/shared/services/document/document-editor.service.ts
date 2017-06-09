@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { AlertService } from '../../../../core/alert/alert.service';
+import { ConfirmService } from '../../../../core/alert/alert.service';
 import { UserService } from '../../../../service-module/database/user/user.service';
 import { DocumentDataService } from '../../../../service-module/database/data/document/document.service';
 
@@ -14,7 +14,7 @@ export class DocumentEditorService {
     constructor( 
         private userService: UserService,
         private dataService: DocumentDataService,
-        private alertService: AlertService,
+        private confirmService: ConfirmService,
         private dialog: MdDialog
     ){}
 
@@ -78,11 +78,10 @@ export class DocumentEditorService {
     }
 
     removeDocument(o: any, callback?: any): void {
-        let objTxt = '"' + o.name + '" including its content';
-        let title = `Are you sure you want to delete ${objTxt}?`;
-        let subtitle = 'The item(s) will be deleted permanently. You can’t undo this action.';
+        let title = `ยืนยันการลบ "${o.name}" และข้อมูลอื่นๆที่เกี่ยวข้อง`;
+        let subtitle = 'ข้อมูลที่ถูกลบจะไม่สามารถกู้คืนได้อีก';
         
-        this.alertService.openConfirmDialog(title, subtitle)
+        this.confirmService.openConfirmDialog(title, subtitle)
             .first()
             .subscribe( 
                 bool => {
@@ -90,7 +89,7 @@ export class DocumentEditorService {
                         this.dataService.remove(o)
                             .then(
                                 o => {
-                                    console.log('[DEL][DOC] updates: ', o);
+                                    // console.log('[DEL][DOC] updates: ', o);
                                     // console.log(`Document-"${o.name}" has been removed.`);
                                     if (callback) {
                                         callback(o);

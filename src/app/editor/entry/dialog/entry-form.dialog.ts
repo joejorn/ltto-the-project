@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MdDialogRef } from '@angular/material';
+import { ConfirmService } from '../../../core/alert/alert.service';
 import { EntryDataService } from '../../../service-module/database/data/entry/entry.service';
+import { EntryEditorService } from '../service/entry-editor.service';
 import { PreferenceService } from '../../../service-module/database/preference/preference.service';
 
 @Component({
@@ -27,7 +29,8 @@ export class EntryFormDialog implements OnInit {
 
     constructor(
 			private fb: FormBuilder, 
-			private entryService: EntryDataService,
+			private dataService: EntryDataService,
+            private confirmService: ConfirmService,
             private prefService: PreferenceService,
 			private dialogRef: MdDialogRef<EntryFormDialog> 
 	) {	
@@ -64,7 +67,6 @@ export class EntryFormDialog implements OnInit {
 
     setParameter(prop: string, value: any): void {
         if (this._defaultValue.hasOwnProperty(prop) && value) {
-            // console.log(`set parameter "${prop}" -> "${value}"`);
             this._defaultValue[prop] = value;
         }
     }
@@ -83,19 +85,19 @@ export class EntryFormDialog implements OnInit {
         let formOutput = this.entryForm.value;
 
         if (formOutput.name.length < 1) {
-            formOutput.name = 'Untitled';
+            formOutput.name = 'ไม่มีชื่อ';
         }
 
         if (this.isEditing) {
             formOutput.uid = this.formObject.uid;
 
-            this.entryService.update(this.formObject, formOutput)
+            this.dataService.update(this.formObject, formOutput)
                 .then( 
                     () => this.onReturnResult(true, formOutput),
                     err => this.onReturnResult(false, err) 
                 );
         } else {
-            this.entryService.add(formOutput)
+            this.dataService.add(formOutput)
                 .then( 
                     o => {
                         if (!this.next) {
@@ -110,10 +112,21 @@ export class EntryFormDialog implements OnInit {
     }
 
     onRemove() {
-        this.entryService.remove(this.formObject)
-            .then( 
-                o => this.onReturnResult(true, o),
-                err => this.onReturnResult( false, err )
+        let title = `ยืนยันการลบ รายการ-"${this.formObject.name}"`;
+        let subtitle = 'ข้อมูลจะถูกลบหลังจากได้รับการยืนยันทันทีและจะไม่สามารถกู้คืนได้อีก';
+        
+        this.confirmService.openConfirmDialog(title, subtitle)
+            .subscribe( 
+                bool => {
+                    if (bool) { // continue delete-process
+                        this.dataService.remove(this.formObject)
+                            .then(
+                                o => {
+                                    this.dialogRef.close();
+                                }
+                            )
+                    }
+                }
             );
     }
 

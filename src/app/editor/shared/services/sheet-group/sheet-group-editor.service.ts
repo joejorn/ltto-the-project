@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { SheetGroupFormDialog } from '../../../sheet-group/dialog/sheet-group-form.dialog';
 import { SheetGroupDataService } from '../../../../service-module/database/data/sheet-group/sheet-group.service';
-import { AlertService } from '../../../../core/alert/alert.service';
+import { ConfirmService } from '../../../../core/alert/alert.service';
 
 
 @Injectable()
@@ -12,7 +12,7 @@ export class SheetGroupEditorService {
 
     constructor( 
         private dataService: SheetGroupDataService,
-        private alertService: AlertService,
+        private confirmService: ConfirmService,
         private dialog: MdDialog
     ){}
 
@@ -67,11 +67,10 @@ export class SheetGroupEditorService {
     }
 
     removeSheetGroup(o: any, callback?: any): void {
-        let objTxt = `"${o.name}" including its entries`;
-        let title = `Are you sure you want to delete ${objTxt}?`;
-        let subtitle = 'The item(s) will be deleted permanently. You can’t undo this action.';
+        let title = `ยืนยันการลบ "${o.name}", ใบซื้อขาย, และรายการซื้อขาย ที่เกี่ยวข้อง`;
+        let subtitle = 'ข้อมูลที่ถูกลบจะไม่สามารถกู้คืนได้อีก';
         
-        this.alertService.openConfirmDialog(title, subtitle)
+        this.confirmService.openConfirmDialog(title, subtitle)
             .first()
             .subscribe( 
                 bool => {
@@ -79,7 +78,7 @@ export class SheetGroupEditorService {
                         this.dataService.remove(o)
                             .then(
                                 o => {
-                                    console.log(`Sheet group-"${o.name}" has been removed.`);
+                                    // console.log(`Sheet group-"${o.name}" has been removed.`);
                                     if (callback) {
                                         callback(o);
                                     }
