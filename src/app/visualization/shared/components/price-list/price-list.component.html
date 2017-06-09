@@ -5,7 +5,6 @@
         [class.selected]="_index == selectedIndex"
         *ngFor="let item of items 
                 | filterByFieldValue:valuePath:'*' 
-                | sortByField:sortProperty:sortDirection 
                 | limitSize: maxItem; 
                 let _index = index;"
         [attr.data-origin-index]="item.$index"
@@ -16,7 +15,7 @@
                 <span class="item-subtitle">{{_index + 1}}.</span>
             </div>
             <div class="item-content extra-width">
-                <span class="item-title">{{ item.name ? item.name : "untitled"}}</span>
+                <span class="item-title">{{ item.name ? item.name : "ไม่ระบุชื่อ"}}</span>
             </div>
             <div class="flex-spacer"></div>
             <div class="item-content content-right">
