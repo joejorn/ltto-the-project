@@ -12,6 +12,7 @@
 
             <!-- First Row -->
             <div *ngIf="!hiddenNav" class="nav-block-link">
+                <md-icon>navigate_before</md-icon>
                 <a [routerLink]="['../..']">{{ document?.name }}</a>
             </div>
 
@@ -88,7 +89,7 @@
 </div>
 
 <!-- FAB -->
-<div class="btn-float-wrapper btn-float-bottom btn-float-right">
+<div class="btn-float-wrapper btn-float-bottom btn-float-right" [class.hidden]="loading">
     <button md-fab color="accent" class="" [mdMenuTriggerFor]="fabMenu">
         <md-icon>add</md-icon>
     </button>

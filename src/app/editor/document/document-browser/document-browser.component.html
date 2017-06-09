@@ -6,20 +6,13 @@
     
     <div class="section-container">
 
-         <!-- No content found -->
-            <section class="default-text-container" *ngIf="(documentList | async)?.length < 1">
-                <div class="default-text">
-                    <h6 class="default-text title">ไม่พบเนื้อหา</h6>
-                </div>
-            </section>
-
         <section>
             <div class="section-header">
                 <h6 class="section-title">เอกสารทั้งหมด:</h6>
             </div>
             <div class="section-content">
 
-                <md-list class="nav-link-list mdl-shadow--2dp" [class.hidden]="loading">
+                <md-list class="nav-link-list mdl-shadow--2dp" [class.hidden]="loading" dense>
                     <!-- Sheet Groups -->
                     <a md-list-item 
                         class="nav-link-item" 
@@ -34,6 +27,13 @@
                         </div>
                     </a>
                 </md-list>
+            </div>
+        </section>
+
+        <!-- No content found -->
+        <section class="default-text-container" *ngIf="(documentList | async)?.length < 1">
+            <div class="default-text">
+                <h6 class="default-text title">ไม่พบเนื้อหา</h6>
             </div>
         </section>
 

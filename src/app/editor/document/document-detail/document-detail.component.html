@@ -35,14 +35,16 @@
             <!-- No content found -->
             <section class="default-text-container" *ngIf="groupList.length < 1 && sheetList.length < 1">
                 <div class="default-text">
-                    <h6 class="default-text title">ไม่พบเนื้อหา</h6>
+                    <h6 class="default-text title">กดที่ "+" เพื่อเพิ่มใบซื้อขายหรือกลุ่มใบซื้อขาย</h6>
                 </div>
             </section>
 
-            <section>
+            <section *ngIf="groupList?.length > 0">
                 <div class="section-content">
-                    <md-list class="nav-link-list mdl-shadow--2dp">
-                        <!-- Sheet Groups -->
+                    
+                    <!-- Sheet Groups -->
+                    <h6 class="nav-link-list-title">กลุ่มใบซื้อขาย</h6>
+                    <md-list class="nav-link-list" dense>
                         <a md-list-item 
                             class="nav-link-item" 
                             *ngFor="let group of (groupList | sortByField:'name')"
@@ -54,9 +56,9 @@
                                 <div class="item-content long-width">
                                     <span class="item-title">{{group.name}}</span>
                                 </div>
-                                <div class="item-content content-right">
+                                <!--<div class="item-content content-right">
                                     <span class="item-subtitle">{{group._sheets?.length}} ใบ</span>
-                                </div>
+                                </div>-->
                                 <!--<div class="item-content content-right">
                                     <span class="item-subtitle">{{group._entryNumber ? group._entryNumber : 0}} entries</span>
                                 </div>
@@ -67,7 +69,17 @@
                             </div>
 
                         </a>
-                        <!-- Sheets -->
+                    </md-list>
+                    
+                </div>
+            </section>
+
+            <section *ngIf="sheetList?.length > 0">
+                <div class="section-content">
+                    
+                    <!-- Sheets -->
+                    <h6 class="nav-link-list-title">ใบซื้อขาย</h6>
+                    <md-list class="nav-link-list" dense>
                         <a md-list-item 
                             class="nav-link-item" 
                             *ngFor="let sheet of (sheetList | sortByField:'name')"
@@ -90,6 +102,7 @@
 
                         </a>
                     </md-list>
+                    
                 </div>
             </section>
 
