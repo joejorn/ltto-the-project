@@ -123,14 +123,26 @@ export class AbstractDataService {
             _o.creator = this.userService.getCurrentUser().uid;
         }
 
-        // remove context properties / empty properties
-        Object.keys(_o).forEach(p => {
-            if (p.startsWith('_') || p.startsWith('$') || (_o[p] === '')) {
-                delete _o[p];
-            }
-        });
+        this.minifyObject(_o);
 
         return _o;
+    }
+
+    // remove context properties / empty properties
+    private minifyObject(o: any): void {
+
+        Object.keys(o).forEach(p => {
+
+            // recursive
+            if (typeof(o[p]) === 'object' ) {
+                this.minifyObject(o[p]);
+            
+            } else if (p.startsWith('_') || p.startsWith('$') || (o[p] === '')) {
+                delete o[p];
+
+            }
+            
+        });
     }
 
 
