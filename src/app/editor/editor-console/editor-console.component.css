@@ -56,6 +56,7 @@ a.nav-link-item {
 
 .nav-link-item.sub-list-item {
     padding-left: 36px;
+    line-height: 24px;
 }
 
 md-list-item:first-child {
@@ -66,4 +67,7 @@ md-list-item:first-child {
     font-size: 14px;
     padding-left: 36px;
     color: rgba( 0, 0, 0, .54);
+}
+.side-content-view {
+    height: 100%;
 }

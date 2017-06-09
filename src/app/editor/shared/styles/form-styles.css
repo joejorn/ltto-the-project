@@ -1,9 +1,21 @@
 :host {
     display: block;
 }
-form {
-    width: 350px;
+
+@media(min-width:600px) {
+    form {
+        width: 400px;
+    }
 }
+
+@media(max-height: 800px) {
+    form {
+        max-height: 45vh;
+        overflow: scroll;
+    }
+}
+
+
 .form-header { 
     margin-bottom: 1em; 
 }
@@ -43,9 +55,6 @@ input {
 }
 .form-section .section-header .section-header-title {
     margin: 0;
-    /*margin: .5em 0 1em 0;*/
-    /*font-weight: 500;*/
-    /*font-size: 18px;*/
 }
 
 md-select {
@@ -68,12 +77,11 @@ md-select {
 .dialog-actions,
 .form-actions {
     display: flex;
-    /*flex-direction: row-reverse;*/
-    margin-top: 5em;
+    margin-top: 2.5em;
 }
 .dialog-actions > button,
 .form-actions > button {
-    /*text-transform: uppercase;*/
+    text-transform: uppercase;
     font-size: 16px;
     font-weight: 400;
 }
@@ -119,7 +127,7 @@ button[md-icon-button].secondary-btn {
 }
 
 
-/* generic */
+/* basic */
 .no-margin {
     margin: 0 !important;
 }

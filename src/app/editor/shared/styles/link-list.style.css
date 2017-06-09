@@ -1,3 +1,7 @@
+.nav-link-list-title {
+    padding-left: 1.25em;
+}
+
 /* List Items */
 .nav-link-list {
     background-color: white;
@@ -20,7 +24,7 @@ a[md-list-item] {
     a[md-list-item] {
         display: flex;
         align-items: center;
-        min-height: 100px;
+        /*min-height: 100px;*/
     }
 }
 
