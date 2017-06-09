@@ -29,7 +29,7 @@ export class AppComponent {
 			{ label: 'ทั่วไป', routerlink: ['overview'], roles: ['master', 'admin', 'reviewer'], icon: 'dashboard' },
 			{ label: 'ยอดรวม', routerlink: ['summary'], roles: ['master', 'reviewer'], icon: 'functions' },
 			{ label: 'เอกสาร', routerlink: ['document'], roles: ['master', 'reviewer', 'editor'], icon: 'library_books' },
-			{ label: 'ตั้งค่า', routerlink: ['settings'], roles: ['master', 'admin'], icon: 'settings' }
+			// { label: 'ตั้งค่า', routerlink: ['settings'], roles: ['master', 'admin'], icon: 'settings' }
 			/*{ label: 'Rewards', routerlink: ['rewards'] },*/
 			/*{ label: 'Archived', routerlink: ['archived'] },*/
 		];

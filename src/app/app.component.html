@@ -3,7 +3,7 @@
   <md-toolbar color="primary">
     <a class="main-logo" [routerLink]="['/']" >{{ title }}</a>
     <span class="flex-spacer"></span>
-    <nav class="main-nav">
+    <nav class="main-nav" *ngIf="user">
       <md-nav-list class="main-nav-list">
         <md-list-item [class.active]="rla.isActive" *ngFor="let link of links">
           <a  [routerLink]="link.routerlink" 
@@ -28,7 +28,7 @@
  
       </md-nav-list>
     </nav>
-    <nav class="compact-nav">
+    <nav class="compact-nav" *ngIf="user">
         <md-menu #appMenu="mdMenu">
           <button md-menu-item *ngFor="let link of links" (click)="router.navigate(link.routerlink)">
             <md-icon>{{link.icon}}</md-icon>
