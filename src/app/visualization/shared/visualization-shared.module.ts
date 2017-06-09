@@ -1,6 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared-module/shared.module';
 import { VisualizationMaterialModule } from './material/visualization-material.module';
 
@@ -10,17 +9,13 @@ import { VisualizationDataService } from './services/visualization-data.service'
 
 // Components
 import { PriceListComponent } from './components/price-list/price-list.component';
+import { PriceListDialog } from './components/dialog/price-list-dialog/price-list.dialog';
 import { PriceTreeComponent } from './components/price-tree/price-tree.component';
 
 // Pipes
 import { ExtractValueFieldPipe } from './pipes/extractor.pipe';
 import { LimitSizePipe } from './pipes/limitor.pipe';
 
-// Resolvers
-import { DetailDocumentResolver } from './resolvers/detail-document.resolver'
-import { DocumentInfoListResolver } from './resolvers/document-info-list.resolver'
-import { PriceCategoriesResolver } from './resolvers/price-categories.resolver'
-import { PriceInfoResolver } from './resolvers/price-info.resolver'
 
 @NgModule({
 	imports: [ 
@@ -30,6 +25,7 @@ import { PriceInfoResolver } from './resolvers/price-info.resolver'
 	],
   	declarations: [
 		PriceListComponent,
+		PriceListDialog,
 		PriceTreeComponent,
         ExtractValueFieldPipe,
 		LimitSizePipe
@@ -37,6 +33,7 @@ import { PriceInfoResolver } from './resolvers/price-info.resolver'
   	exports: [ 
 		SharedModule,
 		PriceListComponent,
+		PriceListDialog,
         PriceTreeComponent,
         ExtractValueFieldPipe,
 		LimitSizePipe,
@@ -45,11 +42,10 @@ import { PriceInfoResolver } from './resolvers/price-info.resolver'
   	providers: [
     	VisualizationFnService,
 		VisualizationDataService,
-        DetailDocumentResolver,
-		DocumentInfoListResolver,
-		PriceCategoriesResolver,
-        PriceInfoResolver,
-  	]
+  	],
+	entryComponents: [
+		PriceListDialog
+	]
 })
 
 export class VisualizationSharedModule { }

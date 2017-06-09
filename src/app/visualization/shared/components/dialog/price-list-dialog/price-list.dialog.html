@@ -1,0 +1,17 @@
+<md-dialog-content class="dialog-content-wrapper">
+    <div class="dialog-header">
+        <md-toolbar color="primary">
+            <h5 class="dialog-header-title">{{ title }}</h5>
+            <span class="flex-spacer"></span>
+            <md-icon (click)="onClose()">close</md-icon>
+        </md-toolbar>
+    </div>
+    <div class="dialog-content"> 
+        <ltto-price-list class="dialog-content"
+            [items]="items"
+            [valuePath]="valuePath"
+            [sortProperty]="valuePath"
+            [sortDirection]="sortDirection" 
+            indexed="true" [sorted]="sorted"></ltto-price-list>
+    </div> 
+</md-dialog-content>

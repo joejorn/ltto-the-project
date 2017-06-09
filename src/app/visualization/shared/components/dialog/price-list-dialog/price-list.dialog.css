@@ -1,0 +1,22 @@
+:host { 
+    display: block;
+}
+
+.dialog-header { 
+    margin-bottom: 1em; 
+}
+.dialog-header-title { 
+    font-weight: 300; 
+    text-transform: uppercase; 
+}
+.dialog-content-wrapper {
+    padding: 8px 0 24px 0; 
+}
+.dialog-content { 
+    overflow: scroll;
+    min-width: 75vw;
+    max-height: 65vh;
+}
+.flex-spacer { 
+    flex: 1; 
+}
