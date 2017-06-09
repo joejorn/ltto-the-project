@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'ltto-dashboard-tile',
@@ -6,15 +6,14 @@ import { AfterContentInit, Component, ElementRef, Input, ViewChild } from '@angu
     styleUrls: ['./dashboard-tile.component.css']
 })
 
-export class DashboardTileComponent implements AfterContentInit {
+export class DashboardTileComponent  {
 
     @Input() title: string;
-    @ViewChild('tileFooter') private footer:ElementRef;
+    
+    @Input() showFooter:boolean;
 
-    private showFooter:boolean = false;
-
-    ngAfterContentInit() {
-        this.showFooter = this.footer.nativeElement.children.length > 0;
+    constructor(){
+        this.showFooter = false;
     }
     
 }
