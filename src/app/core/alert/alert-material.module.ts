@@ -15,4 +15,4 @@ import {
   ]
 })
 
-export class AlertMaterialModule {}
+export class ConfirmMaterialModule {}

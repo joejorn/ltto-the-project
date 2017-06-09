@@ -1,22 +1,22 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlertDialog } from './alert.dialog';
-import { AlertMaterialModule } from './alert-material.module';
-import { AlertService } from './alert.service';
+import { ConfirmDialog } from './alert.dialog';
+import { ConfirmMaterialModule } from './alert-material.module';
+import { ConfirmService } from './alert.service';
 
 @NgModule({
-    declarations: [ AlertDialog ],
-    imports: [ CommonModule, AlertMaterialModule ],
-    exports: [ AlertDialog ],
-    providers: [ AlertService ],
-    entryComponents: [ AlertDialog ]
+    declarations: [ ConfirmDialog ],
+    imports: [ CommonModule, ConfirmMaterialModule ],
+    exports: [ ConfirmDialog ],
+    providers: [ ConfirmService ],
+    entryComponents: [ ConfirmDialog ]
 })
 
-export class AlertModule {
+export class ConfirmModule {
     static forRoot(): ModuleWithProviders {
       return {
-            	ngModule: AlertModule,
-            	providers: [ AlertService ]
+            	ngModule: ConfirmModule,
+            	providers: [ ConfirmService ]
         	}
       }
 }

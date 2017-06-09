@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 // modules
-import { AlertModule } from './alert/alert.module';
+import { ConfirmModule } from './alert/alert.module';
 import { LoginRoutingModule } from './login/login-routing.module';
 import { CoreRoutingModule } from './core-routing.module';
 import { CoreMaterialModule } from './core-material.module';
@@ -27,7 +27,7 @@ import { DummyComponent } from './dummy/dummy.component';
 		DummyComponent
 	],
 	imports: [
-		AlertModule.forRoot(),
+		ConfirmModule.forRoot(),
 		CommonModule,
 		FormsModule,
 		CoreMaterialModule,

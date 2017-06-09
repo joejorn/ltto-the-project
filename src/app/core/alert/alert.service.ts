@@ -3,11 +3,11 @@ import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
 import { Observable } from 'rxjs';
 
-import { AlertDialog } from './alert.dialog';
+import { ConfirmDialog } from './alert.dialog';
 
 
 @Injectable()
-export class AlertService {
+export class ConfirmService {
 
     constructor( private dialog: MdDialog ) {}
 
@@ -16,8 +16,8 @@ export class AlertService {
         txt: string
     ) : Observable<boolean> {
         
-        let dialogRef$ : MdDialogRef<AlertDialog>
-        dialogRef$ = this.dialog.open(AlertDialog);
+        let dialogRef$ : MdDialogRef<ConfirmDialog>
+        dialogRef$ = this.dialog.open(ConfirmDialog);
         dialogRef$.componentInstance.title = title;
         dialogRef$.componentInstance.text = txt;
 
