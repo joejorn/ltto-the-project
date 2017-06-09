@@ -52,18 +52,11 @@ export class VisualizationFnService {
 
     }
 
-    // category extraction
-    getPriceCategories( prices: any[] ) {
-        let lst = prices.map( price => price.category );
-        return Array.from(new Set(lst).values());
-    }
-
-    // @newer_version
-    getSumByPriceCategory( categories: any[], entries?: any[]) {
+    // sum of prices by (detailed) category
+    getSumByPriceCategory( categories: any[], entries?: any[], grossOnly: boolean = false): any[] {
         let prices = categories.reduce( (a: any[], b: any) => a.concat( b.prices ), [] );
 
         let sumPrices = entries ? this.getSumByPrice( prices, entries ) : prices ;
-
         let catSums = categories.map(
                             cat => {
                                 // related prices
@@ -78,35 +71,14 @@ export class VisualizationFnService {
                                 let catSum = { name: cat.name, value: sum };
                                 
                                 // multiplied value of sum
-                                if (cat.hasOwnProperty('multiplier')) {
+                                if (!grossOnly && cat.hasOwnProperty('multiplier')) {
                                     let abs_factor = sum < 0 ? sum * -1 : sum;  // absolute value
-                                    catSum['multiplied'] = abs_factor * cat.multiplier;
+                                    catSum['multiplier'] = {
+                                        factor: cat.multiplier,
+                                        value: abs_factor * cat.multiplier
+                                    };
                                 }
                                 return catSum;
-                            }
-                        );
-
-        return catSums;
-    }
-
-
-    // @TODO: remove this
-    // sum of prices by category
-    getSumByCategory( prices: any[], entries?: any[] ): any[] {
-
-        // sum of each price
-        let sumPrices = entries ? this.getSumByPrice( prices, entries ) : prices ;
-
-        
-        let catSums = this.getPriceCategories( sumPrices ).map(
-                            cat => {
-                                // related prices
-                                let filteredPrices = sumPrices.filter( price => price.category === cat );
-                                let catSum = filteredPrices.reduce( (prev, curr) => {
-                                                    let val = Number(curr.value);
-                                                    return ( !isNaN(val) ) ? prev + val: prev;
-                                                }, 0 );
-                                return { name: cat, value: catSum };
                             }
                         );
 
@@ -119,17 +91,20 @@ export class VisualizationFnService {
             return undefined;
         }
 
-        return documents.map(
+        documents.forEach(
             doc => {
-                let relEntries = entries.filter( entry => {
-                    // console.log(`entry-${entry.documentId} === doc-${doc.uid}: ${entry.documentId === doc.uid}`);
-                    return entry.documentId === doc.uid
-                } );
-                // console.log(`related entries for document-"${doc.name}":\n`, relEntries);
+                let relEntries = [];
+                if (doc.hasOwnProperty('_entries')) {   // if document alreday contains entries
+                    relEntries = doc._entries;
+                } else {    // filter the given entries instead
+                    relEntries = entries.filter( entry => entry.documentId === doc.uid );
+                }
                 doc.value = this.getEntrySum(relEntries);
                 return doc;
             }
         )
+
+        return documents;
     }
 
     // reduce duplicates by addition
@@ -181,34 +156,5 @@ export class VisualizationFnService {
             }
         );
     }
-
-
-    // nesting function
-    /*buildDetailDocument( documents: any[], sheetGroups: any[], sheets: any[], entries: any[] ): any[] {
-        let filterFn = (docId:string, item:any) => { return item.documentId === docId };
-
-        let arrs = [sheetGroups, sheets, entries];
-        let arrKeys = ['sheetGroups', 'sheets', 'entries'];
-
-        documents.forEach(
-            doc => {
-                // properties
-                arrs.forEach( 
-                    (arr:any[], arrIndex: number) => {
-                        if (arr) {
-                            let arrKey =  arrKeys[arrIndex];
-                            doc[arrKey] = arr.filter( 
-                                                (item:any)  => {
-                                                    return item.documentId === doc.uid; 
-                                                } 
-                                            );
-                        } // end if
-                    }
-                );  // end arrs-forEach
-            }
-        ); // end documents-forEach
-
-        return documents;
-    }*/
 
 }

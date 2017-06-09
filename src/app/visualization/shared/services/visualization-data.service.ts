@@ -5,6 +5,7 @@ import { DocumentDataService }  from '../../../service-module/database/data/docu
 import { SheetDataService }  from '../../../service-module/database/data/sheet/sheet.service';
 import { SheetGroupDataService }  from '../../../service-module/database/data/sheet-group/sheet-group.service';
 import { EntryDataService }  from '../../../service-module/database/data/entry/entry.service'
+import { PreferenceService } from '../../../service-module/database/preference/preference.service';
 
 /*
 Service provide APIs required for management of "sheets" and "sheet groups"
@@ -17,8 +18,13 @@ export class VisualizationDataService {
         private docService: DocumentDataService,
         private sheetService: SheetDataService,
         private sheetGroupService: SheetGroupDataService,
-        private entryService: EntryDataService
+        private entryService: EntryDataService,
+        private prefService: PreferenceService
     ){}
+
+    getDetailedPriceCategories(): Observable<any[]> {
+        return this.prefService.getDetailedPriceCategories();
+    }
 
     getDocuments(): Observable<any[]> {
         return this.docService.getObjectList();
