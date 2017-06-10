@@ -2,10 +2,7 @@
     display: block;
     height: 100%;
     overflow: scroll;
-}
-
-.invincible {
-    visibility: hidden;
+    background-color: #fafafa;
 }
 
 .component-page-content {

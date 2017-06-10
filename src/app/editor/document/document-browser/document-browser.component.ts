@@ -9,8 +9,9 @@ import { DocumentEditorService } from '../../shared/services/document/document-e
     selector: 'ltto-document-browser',
     templateUrl: 'document-browser.component.html',
     styleUrls: [
+        '../../../shared-module/styles/fab.style.css',
+        '../../../shared-module/styles/pre-loader.style.css',
         '../../shared/styles/link-list.style.css', 
-        '../../shared/styles/pre-loader.style.css',
         '../../shared/styles/default-text.style.css',
         'document-browser.component.css'
     ]

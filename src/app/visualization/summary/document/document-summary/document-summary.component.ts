@@ -8,7 +8,10 @@ import { VisualizationDataService } from '../../../shared/services/visualization
 @Component({
     selector: 'ltto-document-summary',
     templateUrl: 'document-summary.component.html',
-    styleUrls: ['document-summary.component.css']
+    styleUrls: [
+        'document-summary.component.css', 
+        '../../../../shared-module/styles/fab.style.css'
+    ]
 })
 
 export class DocumentSummaryComponent implements AfterViewInit, OnInit {

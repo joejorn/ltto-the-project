@@ -13,7 +13,11 @@ import { EntryTableComponent } from '../../entry/entry-table/entry-table.compone
     moduleId: module.id,
     selector: 'ltto-sheet-detail',
     templateUrl: 'sheet-detail.component.html',
-    styleUrls: ['../../shared/styles/detail-styles.css']
+    styleUrls: [
+        '../../shared/styles/detail-styles.css',
+        '../../../shared-module/styles/fab.style.css',
+        '../../../shared-module/styles/pre-loader.style.css'
+    ]
 })
 
 export class SheetDetailComponent implements OnInit, OnDestroy {

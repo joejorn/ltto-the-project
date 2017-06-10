@@ -2,7 +2,6 @@
     display: block;
 }
 .component-wrapper {
-    /*min-width: 350px;*/
     max-width: 580px;
     padding: 10px 20px;
     margin: auto;

@@ -13,10 +13,13 @@ import { VisualizationDataService } from '../../shared/services/visualization-da
 import { IDetailedDocument } from '../../shared/interfaces/detail-document.interface';
 
 @Component({
-  moduleId: module.id,
-  selector: 'ltto-dashboard',
-  templateUrl: 'dashboard.component.html',
-  styleUrls: ['dashboard.component.css', '../../shared/styles/pre-loader.style.css']
+  	moduleId: module.id,
+  	selector: 'ltto-dashboard',
+  	templateUrl: 'dashboard.component.html',
+  	styleUrls: [
+		  'dashboard.component.css', 
+		  '../../../shared-module/styles/pre-loader.style.css'
+	]
 })
 
 export class DashboardComponent implements OnInit, AfterViewInit {

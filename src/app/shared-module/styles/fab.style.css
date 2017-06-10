@@ -1,0 +1,21 @@
+.btn-sticky-wrapper {
+    position: -webkit-sticky;
+    position: sticky;
+    text-align: right;
+    padding-right: 28px;
+}
+.btn-float-wrapper {
+    position: fixed;
+}
+.btn-float-wrapper.btn-panel {
+    /*top: calc(128px + 1.5em - 56px/2);*/
+    top: calc(158px - 56px/2);
+}
+.btn-float-bottom, 
+.float-bottom {
+    bottom: 28px;
+}
+.btn-float-right, 
+.float-right {
+    right: 28px;
+}

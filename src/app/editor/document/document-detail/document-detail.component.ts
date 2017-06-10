@@ -17,7 +17,9 @@ import { SheetGroupEditorService } from '../../shared/services/sheet-group/sheet
     styleUrls: [
         '../../shared/styles/link-list.style.css', 
         '../../shared/styles/detail-styles.css',
-        '../../shared/styles/default-text.style.css'
+        '../../shared/styles/default-text.style.css',
+        '../../../shared-module/styles/fab.style.css',
+        '../../../shared-module/styles/pre-loader.style.css'
     ]
 })
 

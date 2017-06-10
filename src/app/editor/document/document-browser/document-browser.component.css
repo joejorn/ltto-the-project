@@ -2,12 +2,11 @@
     display: block;
     height: 100%;
     overflow: scroll;
-    background-color: #fafafa;
 }
 .component-page-content {
     display: block;
     height: inherit;
-    /*background-color: #fafafa;*/
+    background-color: #fafafa;
 }
 .section-container {
     width: 85%;
@@ -33,20 +32,4 @@
 }
 .section-actions .header-action {
     margin: 0 10px;
-}
-
-
-/* Dialog */
-.btn-float-wrapper {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-}
-
-.mdl-dialog {
-    min-width: 320px;
-}
-
-.mdl-dialog__title {
-    font-size: 2em;
 }

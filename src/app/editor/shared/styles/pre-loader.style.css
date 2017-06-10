@@ -3,7 +3,6 @@
     align-items: center;
     justify-content: center;
     min-height: 320px;
-    /*height: inherit;*/
 }
 .preloader {
     height: 44px;

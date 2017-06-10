@@ -40,13 +40,3 @@
     font-weight: 500;
     color: rgba(0,0,0,.64);
 }
-
-.btn-float-wrapper {
-    position: absolute;
-}
-.float-right { 
-    right: 28px;
-}
-.float-bottom {
-    bottom: 28px;
-}

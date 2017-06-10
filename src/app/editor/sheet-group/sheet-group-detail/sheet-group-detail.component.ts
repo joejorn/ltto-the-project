@@ -16,7 +16,11 @@ import { EntryTableComponent } from '../../entry/entry-table/entry-table.compone
     moduleId: module.id,
     selector: 'ltto-sheet-group-detail',
     templateUrl: 'sheet-group-detail.component.html',
-    styleUrls: ['../../shared/styles/detail-styles.css']
+    styleUrls: [
+        '../../shared/styles/detail-styles.css',
+        '../../../shared-module/styles/fab.style.css',
+        '../../../shared-module/styles/pre-loader.style.css'
+    ]
 })
 
 export class SheetGroupDetailComponent implements OnInit, OnDestroy {
