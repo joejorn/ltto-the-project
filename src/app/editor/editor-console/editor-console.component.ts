@@ -52,14 +52,12 @@ export class EditorConsoleComponent implements OnInit, AfterViewInit, OnDestroy 
 								);
 		this.subscriptions.push(subscription);
 
-		// Temporary solution for responsive side bar
-		window.onresize = (e) => this._ngZone.run( () => this.initSideBar() );
-		// this._ngZone.run( () => this.initSideBar() );
-
 	}
 
 	ngAfterViewInit(): void {
-		this._ngZone.run( () => this.initSideBar() );
+		window.onresize = (e) => this._ngZone.run( () => this.initSideBar() );
+		// resolve conflict with changeDetector()
+		setTimeout( () => { this.initSideBar() }, 0);
 	}
 
 	ngOnDestroy(): void {

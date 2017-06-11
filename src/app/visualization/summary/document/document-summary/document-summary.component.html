@@ -1,6 +1,5 @@
 <div class="component-wrapper">
     <md-sidenav-container class="sidenav-container">
-        <!--<md-sidenav #sidenav class="component-sidenav" mode="side" opened="true">-->
         <md-sidenav #sidenav class="component-sidenav" [mode]="compactMode ? 'over':'side'">
             <ltto-price-list #navmenu
                 [items]="documents"

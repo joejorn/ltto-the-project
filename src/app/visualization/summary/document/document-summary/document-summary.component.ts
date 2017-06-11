@@ -52,7 +52,8 @@ export class DocumentSummaryComponent implements AfterViewInit, OnInit {
         if (this.sideNav) {
             window.onresize = (e) => this._ngZone.run( () => this.initSideBar() );
         }
-        this._ngZone.run( () => this.initSideBar() );
+        // resolve conflict with changeDetector()
+        setTimeout( () => { this.initSideBar() }, 0);
 	}
 
     private initSideBar(): void {
