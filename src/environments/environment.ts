@@ -6,3 +6,36 @@
 export const environment = {
   production: false
 };
+
+export const CONST_PATH_IDS = {
+    root: 'dev',
+    config: 'config',
+    priceList: 'ENTRY_PRICE_LIST',
+    priceCatgory: 'ENTRY_PRICE_CATEGORY',
+	users: 'users',
+    entryPath: {
+        root: 'entries'
+    },
+    sheetPath: {
+        root: 'sheets',
+        nested: 'sheet-groups',
+        children: ['entries']
+    },
+    sheetGroupPath: {
+        root: 'sheet-groups',
+        nested: 'sheets',
+        children: ['sheets', 'entries'],
+    },
+    documentPath: {
+        root: 'documents',
+        children: ['sheet-groups', 'sheets', 'entries']
+    }
+};
+
+export const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  storageBucket: "",
+  messagingSenderId: ""
+};
