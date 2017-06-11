@@ -15,12 +15,6 @@
             
             <div class="sidenav-dynamic-content">
 
-                <!-- FAB -->
-                <button md-fab color="accent" 
-                    class="btn-float-wrapper float-right float-bottom" 
-                    (click)="sidenav.toggle()">
-                    <md-icon>menu</md-icon>
-                </button>
                 <div class="sidenav-content-wrapper">
                     
                     <ltto-document-visualization 
@@ -28,6 +22,13 @@
                         [priceCategories]="priceCategories"></ltto-document-visualization>
 
                 </div>
+                
+                <!-- FAB -->
+                <button md-fab color="accent" 
+                    class="btn-float-wrapper float-right float-bottom" 
+                    (click)="sidenav.toggle()">
+                    <md-icon>menu</md-icon>
+                </button>
             </div>
 
 
