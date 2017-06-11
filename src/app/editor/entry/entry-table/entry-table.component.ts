@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { MdButtonToggleChange } from '@angular/material';
 import { Observable } from 'rxjs';
 
@@ -16,17 +16,13 @@ export class EntryTableComponent implements OnInit, OnChanges {
 
 	static DEFAULT_CATEGORY: string = '$all';
 
-	// entries : any[];
 	private entries: Observable<any[]>;	// real-time db
 
 	@Input() sheetId: string;
 	@Input() documentId: string;
-
 	
-	// Category
-	categories: any[];
-
 	private priceList: any[];
+	private priceCategories: any[];
 	private activeCategory: string;
 
 
@@ -65,8 +61,7 @@ export class EntryTableComponent implements OnInit, OnChanges {
 			.first()
 			.subscribe( 
 				_categories => {
-					console.log('categories: ', _categories);
-					this.categories = _categories;
+					this.priceCategories = _categories;
 				}
 			);
 		
@@ -92,7 +87,8 @@ export class EntryTableComponent implements OnInit, OnChanges {
 	}
 
 	initComponent(sheetId: string): void {
-		this.entries = 	this.dataService.getEntryListBySheet(sheetId)
+
+		this.entries = this.dataService.getEntryListBySheet(sheetId)
 							.map( 
 								entries => {
 									entries.forEach((entry, index) => 
@@ -102,7 +98,7 @@ export class EntryTableComponent implements OnInit, OnChanges {
 								}
 							);
 	}
-	
+
 	
 	onCategoryChange(e: MdButtonToggleChange): void {
 		this.activeCategory = e.value;
@@ -114,7 +110,7 @@ export class EntryTableComponent implements OnInit, OnChanges {
 			sheetId: this.sheetId,
 			documentId: this.documentId,
 			priceList: this.priceList,
-			categories: this.categories
+			categories: this.priceCategories
 		}
 		this.dataService.createEntry(params);
 	}
@@ -122,7 +118,7 @@ export class EntryTableComponent implements OnInit, OnChanges {
 	editEntry(o:any): void {
 		let params = {
 			priceList: this.priceList,
-			categories: this.categories
+			categories: this.priceCategories
 		}
 		this.dataService.editEntry(o, params);
 	}

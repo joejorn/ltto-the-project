@@ -10,12 +10,12 @@
 	<div class="component-content">
 
 		<div class="table-tabs">
-			<md-button-toggle-group *ngIf="categories" class="tabs-container" #group="mdButtonToggleGroup" (change)="onCategoryChange($event)">
+			<md-button-toggle-group *ngIf="priceCategories" class="tabs-container" #group="mdButtonToggleGroup" (change)="onCategoryChange($event)">
 				<md-button-toggle value="$all" [checked]="true">
 					<div class="tab-label">ทั้งหมด</div>
 				</md-button-toggle>
 				
-				<md-button-toggle *ngFor="let category of categories" value="{{category.uid}}">
+				<md-button-toggle *ngFor="let category of priceCategories" value="{{category.uid}}">
 					<div class="tab-label">{{category.name}}</div>
 				</md-button-toggle>
 

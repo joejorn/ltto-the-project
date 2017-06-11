@@ -15,7 +15,7 @@ export class UserService {
     constructor( public db: AngularFireDatabase ) {
         this.user = new BehaviorSubject(null);
         this.currentUser = this.user.asObservable();
-        this.currentUser.subscribe( usr => console.log('user changed: ', usr));
+        // this.currentUser.subscribe( usr => console.log('user changed: ', usr));
     }
 
     // cache user information

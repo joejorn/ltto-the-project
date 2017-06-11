@@ -154,7 +154,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 		this.lastSums.netSum = this.lastSums.grossSum + this.lastSums.multipliedSum;
 
 		this.uniqueEntries = this.fnService.getUniqueEntries( _entries );
-		console.log('unique prices: ', this.uniqueEntries);
 		this.documents = this.fnService.getSumByDocument( this.documents );
 		
 	}
