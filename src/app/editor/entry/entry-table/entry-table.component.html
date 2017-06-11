@@ -2,10 +2,9 @@
 
 	<header class="component-header">
 		<h5 class="component-header-title">รายการซื้อขาย</h5>
-		<div class="component-header-actions">
-			<!--<button md-icon-button (click)="openForm()"><md-icon>add</md-icon></button>-->
-			<!--<button md-icon-button><md-icon>mode_edit</md-icon></button>-->
-		</div>
+		<!--<div class="component-header-actions">
+			<button md-icon-button (click)="openForm()"><md-icon>add</md-icon></button>
+		</div>-->
 	</header>
 
 	<div class="component-content">
@@ -40,7 +39,10 @@
 						<td [ngClass]="col.class" 
 							*ngFor="let col of columns; let colIndex = index;"
 							[class.hidden]="col._hidden">
-							<span>{{ colIndex < baseColumns.length ?  entry[col.property] : entry.prices[col.property]}}</span>
+							<span *ngIf="colIndex < baseColumns.length">{{ entry[col.property] }}</span>
+							<!-- if remark exists -->
+							<span style="color: red;" *ngIf="(colIndex == baseColumns.length - 1) && (entry.remark)">*</span>
+							<span *ngIf="colIndex >= baseColumns.length">{{ (entry?.prices) ?  entry.prices[col.property]?.toLocaleString("en"): ''}}</span>
 						</td>
 					</tr>
 					
