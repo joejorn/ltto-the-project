@@ -55,12 +55,7 @@ export class EntryDataService extends AbstractDataService {
         let _o = this._prepareObject(this.rootPath, o);
         let _path = [this.rootPath, _o.uid].join('/');
 
-        // let update = {};
-        // update[_path] = _o;
-        // console.log('[ADD][Entry] Updates: ', update);
-        // return new Promise( resolved => resolved( update ) );
-
-        console.log(`[ADD][Entry] Entry with title "${_o.name}" has been added.`);
+        // console.log(`[ADD][Entry] Entry with title "${_o.name}" has been added.`);
         return this.db.object(_path).set(_o);
     }
 
@@ -69,9 +64,8 @@ export class EntryDataService extends AbstractDataService {
         
         let _path = [this.rootPath, o.uid].join('/');
 
-        console.log(`Entry with title "${o.name}" has been removed.`);
+        // console.log(`Entry with title "${o.name}" has been removed.`);
         return this.db.object(_path).set(null);
-        // return new Promise( resolved => resolved(updates) );
     }
 
 
@@ -79,13 +73,8 @@ export class EntryDataService extends AbstractDataService {
 
         let _o = this._prepareObject(this.rootPath, curr);
         let _path = [this.rootPath, curr.uid].join('/');
-        
-        // let update = {};
-        // update[_path] = _o;
-        // console.log('[UP][Entry] Updates: ', update);
-        // return new Promise( resolved => resolved( update ) );
 
-        console.log(`[EDT][Entry]"${_o.name}"-Entry has been updated`);
+        // console.log(`[EDT][Entry]"${_o.name}"-Entry has been updated`);
         return this.db.object(_path).set(_o);
     }
 

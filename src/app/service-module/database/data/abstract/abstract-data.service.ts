@@ -134,10 +134,10 @@ export class AbstractDataService {
         Object.keys(o).forEach(p => {
 
             // recursive
-            if (typeof(o[p]) === 'object' ) {
+            if (typeof(o[p]) === 'object' && o[p]!== null) {
                 this.minifyObject(o[p]);
             
-            } else if (p.startsWith('_') || p.startsWith('$') || (o[p] === '')) {
+            } else if (!o[p] || p.startsWith('_') || p.startsWith('$') || (o[p] === '')) {
                 delete o[p];
 
             }
