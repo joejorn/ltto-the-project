@@ -6,8 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CountVisibleCellPipe implements PipeTransform {
 
 	transform(
-            arr: Array<any>=[], 
-            // attr: string="_category",
+            arr: Array<any>=[],
             attr: string="_categoryId",
             category:string="$all"  // default category
         ) 
@@ -26,7 +25,6 @@ export class CountVisibleCellPipe implements PipeTransform {
 export class SetVisibleCellPipe implements PipeTransform {
 
     private DEFAULT_CATEGORY: string = '$all';
-	// private defaultCategory: string = EntryListComponent.DEFAULT_CATEGORY; // '$all'
 
 	transform(
 		arr: Array<any>=[], 
@@ -70,7 +68,7 @@ export class SetVisibleCellPipe implements PipeTransform {
 
 					// check if one of related properties has a value
 					let bools = filteredProp.map( prop => {
-									let num = Number(elem.prices[prop]);
+									let num = (elem.hasOwnProperty('prices'))  ? Number(elem.prices[prop]): 0;
 									return num !== NaN && num > 0;
 								});
 					
@@ -79,8 +77,6 @@ export class SetVisibleCellPipe implements PipeTransform {
 				}
 			);
 		}
-
-		// console.log('visibility array: ', arr);
 		
 		return arr;
 	}

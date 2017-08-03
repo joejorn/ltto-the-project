@@ -39,9 +39,9 @@
                     *ngFor="let price of priceList; let i = index;" 
                     [class.hidden]="price.categoryId!==group.value">
                     
-                    <md-input-container >
-                        <span md-prefix>{{ price.name }}</span>
-                        <input mdInput type="number" name="{{ price.property }}" formControlName="{{ price.property }}">
+                    <md-input-container floatPlaceholder="never">
+                        <span mdPrefix>{{ price.name }} &nbsp; &nbsp;</span>
+                        <input mdInput type="number" name="{{ price.property }}" placeholder="0" formControlName="{{ price.property }}">
                     </md-input-container>
 
                 </div>
