@@ -1,28 +1,41 @@
-# Ltto
+# ltto - the project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
+An experimental web application for a private business which focuses on multi-prices for the same product. The app is purely implemented by Angular 4 and uses Firebase as a data storage.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Dependencies
 
-## Code scaffolding
+The implementation of this app is built on top of the followings:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+* [Angular Material](https://material.angular.io/) – material component for Angular
+* [Plotly.js](https://plot.ly/plotly-js-scientific-d3-charting-library/) – charting library built on [D3.js](https://d3js.org/)
+* [AngularFire2](https://github.com/angular/angularfire2) – library for Firebase and Angular
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Responsiveness
 
-## Running unit tests
+Since the main focus of the app is the mobility, all available pages must be serve all device screen sizes.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/dashboard-tablet.png?raw=true" width="450">
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/dashboard-phone.png?raw=true" width="300">
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Authentication
+
+The app uses the authentication process provided by Firebase.
+
+<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/sign_in-phone.png?raw=true" width="300">
+
+
+## Minimal Design
+
+<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/documents-phone.png?raw=true" width="300">
+
+<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/sheet-group-phone.png?raw=true" width="300">
+
+
+## User Role and Permission
+The friendly interface is currently not yet implemented.
