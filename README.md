@@ -32,10 +32,12 @@ The app uses the authentication process provided by Firebase.
 
 ## Minimal Design
 
-<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/documents-phone.png?raw=true" width="300">
-
-<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/sheet-group-phone.png?raw=true" width="300">
-
+<kbd>
+  <img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/documents-phone.png?raw=true" width="300">
+</kbd>
+<kbd>
+  <img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/sheet-group-phone.png?raw=true" width="300">
+</kbd>
 
 ## User Role and Permission
 The friendly interface is currently not yet implemented.
