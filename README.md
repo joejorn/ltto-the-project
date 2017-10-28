@@ -16,28 +16,36 @@ The implementation of this app is built on top of the followings:
 
 Since the main focus of the app is the mobility, all available pages must be serve all device screen sizes.
 
-
-<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/dashboard-tablet.png?raw=true" width="450">
-
-<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/dashboard-phone.png?raw=true" width="300">
-
-
+<table>
+  <tr>
+    <th>
+      <img src="example/media/dashboard-tablet.png" width="450"/>
+    </th>
+    <th>
+      <img src="example/media/dashboard-phone.png" width="220"/>
+    </th>
+  </tr>
+</table>
 
 ## Authentication
 
 The app uses the authentication process provided by Firebase.
 
-<img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/sign_in-phone.png?raw=true" width="300">
+<img src="example/media/sign_in-phone.png" width="220">
 
 
 ## Minimal Design
 
-<kbd>
-  <img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/documents-phone.png?raw=true" width="300">
-</kbd>
-<kbd>
-  <img src="https://github.com/joejorn/ltto-the-project/blob/master/example/media/sheet-group-phone.png?raw=true" width="300">
-</kbd>
+<table>
+  <tr>
+    <th>
+      <img src="example/media/documents-phone.png" width="220"/>
+    </th>
+    <th>
+      <img src="example/media/sheet-group-phone.png" width="220"/>
+    </th>
+  </tr>
+</table>
 
 ## User Role and Permission
 The friendly interface is currently not yet implemented.
